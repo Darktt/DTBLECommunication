@@ -1,7 +1,5 @@
 # 藍牙中心 (Central)
 
---
-
 因為 iOS 的藍牙中心的架構較為複雜，因此寫下這篇作為記錄，讓下次也能順利的使用此功能。
 
 ## 中心結構
@@ -19,14 +17,27 @@
 完成周邊連線之後它的工作就結束了。可用的方法：
 >>
 * `init(delegate:, queue:)`<br/>
-	建立中心物件
+	建立中心物件，如果 queue 給 nil 的時候，就代表使用的是 main queue。
 * `init(delegate:queue:options:)`<br/>
 	同樣是建立中心物件，不過差別是多了option的參數。
 * `retrievePeripherals(withIdentifiers:)`<br/>
 	取回已知的周邊，如果 identifiers 給空陣列的話會取得所有這個 app 找到的周邊。
 * `retrieveConnectedPeripherals(withServices:)`<br/>
 	取回曾經連線過的周邊，如果 identifiers 給空陣列的話會取得所有這個 app 找到的周邊。
-
+* `scanForPeripherals(withServices:options:)`<br/>
+	開始尋找周邊，如果 services 是給 nil 的時候，會找到所有的周邊，如果不想取得重複的周邊的話，可以在 options 增加 `CBCentralManagerScanOptionAllowDuplicatesKey` 的參數為 false 即可。<br/>
+	找尋到的周邊都會透過 CBCentralManagerDelegate 的 `centralManager(_:didDiscover:advertisementData:rssi:)` 取得；<br/>
+	周邊的實體需要被變數保留，不然周邊在連線之後會斷線。<br/>
+	*尋找周邊的時候必須 state 為 poweredOn 的時候才能使用，能在建立完成中心物件之後透過 CBCentralManagerDelegate 的 `centralManagerDidUpdateState(_)` 取得現在狀態。*
+* `stopScan()` <br/>
+	停止尋找周邊，當中心找到周邊或是放棄尋找周邊的時候就使用這個方法。
+* `connect(_:options:)`<br/>
+	連線周邊，option 中可以提供 CBConnectPeripheralOptionNotifyOnConnectionKey、CBConnectPeripheralOptionNotifyOnDisconnectionKey、CBConnectPeripheralOptionNotifyOnNotificationKey 用來得知周邊狀態變動時的通知。<br/>
+	（*需要裝置為螢幕鎖定狀態，並且為系統自動通知，app 無從得知。*）
+* `cancelPeripheralConnection(_:)`<br/>
+	取消周邊連線，主動取消連線。<br/>
+	*當周邊的實體被釋放的時候也會自動取消連線。*
+	
 ### CBPeripheral
 > 它是被找到的周邊物件，周邊所持有的資料有：
 >>

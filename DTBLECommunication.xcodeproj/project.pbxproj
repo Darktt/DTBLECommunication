@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		525C32FF2126A5D80095BBA0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 525C32FE2126A5D80095BBA0 /* README.md */; };
+		525C33012126D0990095BBA0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 525C33002126D0990095BBA0 /* README.md */; };
 		525C73BC21250EC70093A32A /* DTAPP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525C73BB21250EC60093A32A /* DTAPP.swift */; };
 		525C73BE212518A20093A32A /* DTLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525C73BD212518A20093A32A /* DTLog.swift */; };
 		52A702B42123D4D100017F9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A702B32123D4D100017F9E /* AppDelegate.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		525C32FE2126A5D80095BBA0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		525C33002126D0990095BBA0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		525C73BB21250EC60093A32A /* DTAPP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTAPP.swift; sourceTree = "<group>"; };
 		525C73BD212518A20093A32A /* DTLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTLog.swift; sourceTree = "<group>"; };
 		52A702B02123D4D100017F9E /* DTBLECommunication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DTBLECommunication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +74,7 @@
 		52A702A72123D4D000017F9E = {
 			isa = PBXGroup;
 			children = (
+				525C33002126D0990095BBA0 /* README.md */,
 				52A702B22123D4D100017F9E /* DTBLECommunication */,
 				52A702B12123D4D100017F9E /* Products */,
 				52A702C92123D6A400017F9E /* Frameworks */,
@@ -204,6 +207,7 @@
 				52A702BB2123D4D400017F9E /* Assets.xcassets in Resources */,
 				52A702DB2123DC3E00017F9E /* Peripheral.storyboard in Resources */,
 				52A702D82123DC3600017F9E /* Central.storyboard in Resources */,
+				525C33012126D0990095BBA0 /* README.md in Resources */,
 				52A702B92123D4D100017F9E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DTBLECommunication" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M51-G8-gMv">
+                                <rect key="frame" x="0.0" y="20" width="375" height="323.5"/>
+                                <state key="normal" title="Central"/>
+                                <connections>
+                                    <action selector="launchCentralAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BSd-k2-Ro8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCO-ln-pD8">
+                                <rect key="frame" x="0.0" y="343.5" width="375" height="323.5"/>
+                                <state key="normal" title="Peripheral"/>
+                                <connections>
+                                    <action selector="launchPeripheralAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o9G-rR-gG3"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qCO-ln-pD8" secondAttribute="bottom" id="Jh6-IG-v7g"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="M51-G8-gMv" secondAttribute="trailing" id="Lhn-Xv-4WW"/>
+                            <constraint firstItem="M51-G8-gMv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Mt3-WD-W2m"/>
+                            <constraint firstItem="M51-G8-gMv" firstAttribute="height" secondItem="qCO-ln-pD8" secondAttribute="height" id="R1M-YK-bnn"/>
+                            <constraint firstItem="qCO-ln-pD8" firstAttribute="top" secondItem="M51-G8-gMv" secondAttribute="bottom" id="Ygx-MV-95m"/>
+                            <constraint firstItem="qCO-ln-pD8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ZVo-b6-TuG"/>
+                            <constraint firstItem="M51-G8-gMv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hSU-a9-D2l"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qCO-ln-pD8" secondAttribute="trailing" id="zgl-bC-k6n"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>

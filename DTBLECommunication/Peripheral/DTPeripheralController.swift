@@ -32,6 +32,8 @@ public class DTPeripheralController: UIViewController
     fileprivate var subscribedCentral: CBCentral?
     fileprivate var characteristic: CBMutableCharacteristic?
     
+    @IBOutlet fileprivate weak var textView: UITextView!
+    
     // MARK: - Methods -
     // MARK: View Live Cycle
     
@@ -68,7 +70,9 @@ public class DTPeripheralController: UIViewController
         
         let closeButtonItem = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(closeAction(_:)))
         
+        self.automaticallyAdjustsScrollViewInsets = false
         self.navigationItem.leftBarButtonItem = closeButtonItem
+        self.textView.text = ""
         
         // Trigger lazy property for initial instance, wait the power on state.
         let _ = self.peripheralManager
@@ -107,7 +111,9 @@ fileprivate extension DTPeripheralController
         
         DTLog(authStatus)
         
-        let characteristic = CBMutableCharacteristic(type: DTUUID.characteristicUuid, properties: [.notify, .read, .write], value: nil, permissions: [.readable, .writeable])
+        let properties: CBCharacteristicProperties = [.notify, .read, .write]
+        let permissisons: CBAttributePermissions = [.readable, .writeable]
+        let characteristic = CBMutableCharacteristic(type: DTUUID.characteristicUuid, properties: properties, value: nil, permissions: permissisons)
         
         let service = CBMutableService(type: DTUUID.serviceUuid, primary: true)
         service.characteristics = [characteristic]
@@ -126,11 +132,6 @@ fileprivate extension DTPeripheralController
     
     fileprivate func sendMessage(with string: String)
     {
-        string.data(using: .utf8).unwrapped {
-            
-            self.peripheralManager.updateValue($0, for: self.characteristic!, onSubscribedCentrals: [self.subscribedCentral!])
-        }
-        
         if let data: Data = string.data(using: .utf8),
             let characteristic = self.characteristic,
             let central = self.subscribedCentral {
@@ -143,6 +144,9 @@ fileprivate extension DTPeripheralController
     {
         if let value = value, let string = String(data: value, encoding: .utf8) {
             
+            let currentString = self.textView.text + string + "\n"
+            
+            self.textView.text = currentString
             DTLog(string)
         }
     }
@@ -208,18 +212,16 @@ extension DTPeripheralController: CBPeripheralManagerDelegate
     
     public func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest)
     {
-        let central: CBCentral = request.central
-        let characteristic: CBCharacteristic = request.characteristic
-        
-        DTLog("Central: \(central)")
-        DTLog("Characteristic: \(characteristic)")
-        
-        request.value = "Hello".data(using: .utf8)
+        request.value = "Reading".data(using: .utf8)
         peripheral.respond(to: request, withResult: .success)
     }
     
     public func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest])
     {
+        let request: CBATTRequest = requests.first!
         
+        self.logValue(request.value)
+        
+        peripheral.respond(to: request, withResult: .success)
     }
 }

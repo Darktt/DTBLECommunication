@@ -121,7 +121,11 @@ fileprivate extension DTCentralController
     @objc
     fileprivate func test2Action(_ sender: UIButton)
     {
-        
+        "台灣傳奇高山茶一二三四五六七八九十零一二三四五六七八九十零,1,500".data(using: .utf8).unwrapped {
+            
+            self.peripheral?.writeValue($0, for: self.characteristic!, type: .withResponse)
+            self.peripheral?.readValue(for: self.characteristic!)
+        }
     }
 }
 
@@ -267,7 +271,7 @@ extension DTCentralController: CBPeripheralDelegate
             [self.test1Button, self.test2Button].forEach { $0?.isEnabled = true }
 //            self.subscribeCharacteristic(for: characteristic)
             self.characteristic = characteristic
-            self.peripheral?.readValue(for: characteristic)
+//            self.peripheral?.readValue(for: characteristic)
         }
     }
     

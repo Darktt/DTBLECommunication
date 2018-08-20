@@ -62,7 +62,7 @@
 * `setNotifyValue(_:for:)`<br/>
     用來訂閱有通知功能的特色（可以從 `CBCharacteristic.properties` 得知是否有訂閱功能），結果會從 CBPeripheralDelegate `peripheral(_:didUpdateNotificationStateFor:error:)` 得知是否成功訂閱。
 * `writeValue(_:for:)` & `writeValue(_:for:type:)`<br/>
-    用來傳送資料到週邊端，這個只要提供特色即可，但是 `CBCharacteristic.properties` 要包含 write 的功能，不然會失敗，另外一個 type 的參數是決定這個傳送是否有回應。
+    用來傳送資料到週邊端，這個只要提供特色即可，但是 `CBCharacteristic.properties` 要包含 write 的功能，不然會失敗，另外一個 type 的參數是決定這個傳送是否需要回應。
 * `readValue(for:)`<br/>
     讀取從周邊傳送的資訊，能讀取的對象有兩個，一個是特色 *CBCharacteristic* 另一個是描述 *CBDescriptor* ：<br/>
     以特色當對象傳送的時候要注意 `CBCharacteristic.properties` 是否包含 read 的功能，不然會失敗；<br/>
@@ -83,7 +83,7 @@
 > 它是服務所提供的特色，特色可以有多個，特色與服務同樣是根據 UUID 來區分，特色所持有的資料有：
 >>
 * 依附的服務 `service: CBService`，唯讀
-* 讀取到的資料 `value: Data?`，唯讀，這個資料是從周邊提供的
+* 讀取到的資料 `value: Data?`，唯讀，這個資料是從周邊發送通知的時候才取得到的，其他時間點都無資料。
 * 可用的描述 `descriptors: [CBDescriptor]?`，唯讀，需要執行尋找描述動作才能取得可用的描述。
 * 資產 `properties: CBCharacteristicProperties`，唯讀，決定這個特色是否支援讀或寫與資料加密的參數。
 * 是否是正在訂閱的特色 `isNotifying: Bool`，唯讀，當使用 CBPeripheral `setNotifyValue(_:for:)` 並且設定成功時，會得到 true。

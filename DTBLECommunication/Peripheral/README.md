@@ -4,22 +4,22 @@
 
 ## 周邊結構
 > * CBPeripheralManager
- * Services (CBMutableService)
-     * Include Services (CBMutableService)
-     * Characteristics (CBMutableCharacteristic)
-         * Properties（CBCharacteristicProperties）
-         * Permissisons（CBAttributePermissions）
-         * Descriptors（CBMutableDescriptor）
-* CBCentral
+> * Services (CBMutableService)
+>     * Include Services (CBMutableService)
+>     * Characteristics (CBMutableCharacteristic)
+>         * Properties（CBCharacteristicProperties）
+>         * Permissisons（CBAttributePermissions）
+>         * Descriptors（CBMutableDescriptor）
+> * CBCentral
 
 ---------------
 
 ### 周邊建立流程
 > 1. 在 viewDidLoad 建立 CBPeripheralManager。
-2. 建立 CBMutableCharacteristic 並依需求設定 CBCharacteristicProperties 為 *notify* 或 *read*、*write*（可以重複設定）與 CBAttributePermissions 為 *readable* 或 *writeable*（可以重複設定）。
-3. 建立 CBMutableService 並加入 CBMutableCharacteristic。
-4. 確定 CBPeripheralManager 的 state 為 powerOn，之後加入建立好的 CBMutableService。
-5. 使用 CBPeripheralManager startAdvertising(_:) 開始廣播。
+> 2. 建立 CBMutableCharacteristic 並依需求設定 CBCharacteristicProperties 為 *notify* 或 *read*、*write*（可以重複設定）與 CBAttributePermissions 為 *readable* 或 *writeable*（可以重複設定）。
+> 3. 建立 CBMutableService 並加入 CBMutableCharacteristic。
+> 4. 確定 CBPeripheralManager 的 state 為 powerOn，之後加入建立好的 > CBMutableService。
+> 5. 使用 CBPeripheralManager startAdvertising(_:) 開始廣播。
 
 ### CBPeripheralManager
 > 它是負責檢查認證狀態、加入 Service (從 Delegate 得知加入成功)、廣播等功能。<br/>

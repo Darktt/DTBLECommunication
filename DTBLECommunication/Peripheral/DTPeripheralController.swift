@@ -72,7 +72,9 @@ public class DTPeripheralController: UIViewController
         
         self.automaticallyAdjustsScrollViewInsets = false
         self.navigationItem.leftBarButtonItem = closeButtonItem
+        
         self.textView.text = ""
+        self.textView.isEditable = false
         
         // Trigger lazy property for initial instance, wait the power on state.
         let _ = self.peripheralManager
@@ -136,12 +138,23 @@ fileprivate extension DTPeripheralController
     
     fileprivate func sendMessage(with string: String)
     {
-        if let data: Data = string.data(using: .utf8),
-            let characteristic = self.characteristic,
-            let central = self.subscribedCentral {
+        guard let data: Data = string.data(using: .utf8) else {
             
-            self.peripheralManager.updateValue(data, for: characteristic, onSubscribedCentrals: [central])
+            return
         }
+        
+        self.sendMessage(with: data)
+    }
+    
+    fileprivate func sendMessage(with data: Data)
+    {
+        guard let characteristic = self.characteristic,
+              let central = self.subscribedCentral else {
+                
+                return
+        }
+        
+        self.peripheralManager.updateValue(data, for: characteristic, onSubscribedCentrals: [central])
     }
     
     fileprivate func logValue(_ value: Data?)

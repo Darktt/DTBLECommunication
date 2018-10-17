@@ -65,6 +65,12 @@ public class DTCentralController: UIViewController
             
             self.centralManager.stopScan()
         }
+        
+        if let peripheral = self.peripheral {
+            
+            peripheral.delegate = nil
+            self.centralManager.cancelPeripheralConnection(peripheral)
+        }
     }
     
     public override func viewDidLoad()
@@ -194,9 +200,10 @@ extension DTCentralController: CBCentralManagerDelegate
     {
         let key: DictionaryKey<String, String> = String.key(CBAdvertisementDataLocalNameKey)
         
-        if let name = advertisementData[key] {
+        if let name: String = advertisementData[key] {
             
-            DTLog("Discovered peripheral:" + name + " rssi: " + RSSI.intValue.format("%td"))
+            let rssiValue: String = RSSI.intValue.format("%td")
+            DTLog("Discovered peripheral:" + name + " rssi: " + rssiValue)
             
             central.stopScan()
             self.connect(for: peripheral)

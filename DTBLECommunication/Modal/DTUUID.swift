@@ -17,7 +17,8 @@ public struct DTUUID
     // MARK: - Properties -
     
     public static let serviceUuid: CBUUID = CBUUID(string: "91C68CED-A0D3-47D4-9FEF-6538BE9CA92C")
-    public static let characteristicUuid: CBUUID = CBUUID(string: "7B9992F7-D2D5-4452-82E1-A1CE6CD2E4AD")
+    
+    public static let characteristicUuids: Array<CBUUID> = [CBUUID(string: "7B9992F7-D2D5-4452-82E1-A1CE6CD2E4AD"), CBUUID(string: "7B9992F7-D2D6-4452-82E1-A1CE6CD2E4AD")]
     
     // MARK: - Methods -
     // MARK: Initial Method

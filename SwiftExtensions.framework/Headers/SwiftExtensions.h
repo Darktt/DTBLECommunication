@@ -2,7 +2,7 @@
 //  SwiftExtensions.h
 //  SwiftExtensions
 //
-//  Created by Daarktt on 18/5/7.
+//  Created by Darktt on 18/5/7.
 //  Copyright © 2018 Darktt. All rights reserved.
 //
 

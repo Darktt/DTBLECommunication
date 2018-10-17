@@ -60,7 +60,7 @@
     從服務來尋找特色，找到特色時會從 CBPeripheralDelegate，`peripheral(_:didDiscoverCharacteristicsFor:error:)` 取得已找到的特色或失敗訊息。
     *取回曾經連線過的周邊的時候，如果有成功找到特色，那就不需要再次尋找，取回時會一併取得。*
 >> * `setNotifyValue(_:for:)`<br/>
-    用來訂閱有通知功能的特色（可以從 `CBCharacteristic.properties` 得知是否有訂閱功能），結果會從 CBPeripheralDelegate `peripheral(_:didUpdateNotificationStateFor:error:)` 得知是否成功訂閱。
+    用來訂閱有通知功能的特色（可以從 `CBCharacteristic.properties` 得知是否有訂閱功能），結果會從 CBPeripheralDelegate `peripheral(_:didUpdateNotificationStateFor:error:)` 得知是否成功訂閱，並且從 `peripheral(_:didUpdateValueFor:error:)` 取得發送的資訊。
 >> * `writeValue(_:for:)` & `writeValue(_:for:type:)`<br/>
     用來傳送資料到週邊端，這個只要提供特色即可，但是 `CBCharacteristic.properties` 要包含 write 的功能，不然會失敗，另外一個 type 的參數是決定這個傳送是否需要回應。
 >> * `readValue(for:)`<br/>

@@ -7,11 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		525C32FF2126A5D80095BBA0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 525C32FE2126A5D80095BBA0 /* README.md */; };
-		525C33012126D0990095BBA0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 525C33002126D0990095BBA0 /* README.md */; };
 		525C73BC21250EC70093A32A /* DTAPP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525C73BB21250EC60093A32A /* DTAPP.swift */; };
 		525C73BE212518A20093A32A /* DTLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525C73BD212518A20093A32A /* DTLog.swift */; };
-		529DEA3D212A4F1B000AE8F5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 529DEA3C212A4F1B000AE8F5 /* README.md */; };
 		52A702B42123D4D100017F9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A702B32123D4D100017F9E /* AppDelegate.swift */; };
 		52A702B62123D4D100017F9E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A702B52123D4D100017F9E /* ViewController.swift */; };
 		52A702B92123D4D100017F9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52A702B72123D4D100017F9E /* Main.storyboard */; };
@@ -205,13 +202,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				525C32FF2126A5D80095BBA0 /* README.md in Resources */,
 				52A702BE2123D4D400017F9E /* LaunchScreen.storyboard in Resources */,
 				52A702BB2123D4D400017F9E /* Assets.xcassets in Resources */,
 				52A702DB2123DC3E00017F9E /* Peripheral.storyboard in Resources */,
 				52A702D82123DC3600017F9E /* Central.storyboard in Resources */,
-				525C33012126D0990095BBA0 /* README.md in Resources */,
-				529DEA3D212A4F1B000AE8F5 /* README.md in Resources */,
 				52A702B92123D4D100017F9E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

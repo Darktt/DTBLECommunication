@@ -111,14 +111,18 @@ fileprivate extension DTPeripheralController
         
         DTLog(authStatus)
         
-        let properties: CBCharacteristicProperties = [.notify, .read, .write]
-        let permissisons: CBAttributePermissions = [.readable, .writeable]
-        let characteristic = CBMutableCharacteristic(type: DTUUID.characteristicUuid, properties: properties, value: nil, permissions: permissisons)
+        let characteristicUuids: Array<CBUUID> = DTUUID.characteristicUuids
+        
+        let properties: CBCharacteristicProperties = [.write, .writeWithoutResponse]
+        let permissisons: CBAttributePermissions = [.writeable]
+        
+        let characteristic = CBMutableCharacteristic(type: characteristicUuids.first!, properties: properties, value: nil, permissions: permissisons)
+        let characteristicForNotify = CBMutableCharacteristic(type: characteristicUuids.last!, properties: [.notify, .read], value: nil, permissions: [.readable])
         
         let service = CBMutableService(type: DTUUID.serviceUuid, primary: true)
-        service.characteristics = [characteristic]
+        service.characteristics = [characteristic, characteristicForNotify]
         
-        self.characteristic = characteristic
+        self.characteristic = characteristicForNotify
         self.peripheralManager.add(service)
     }
     
@@ -142,13 +146,16 @@ fileprivate extension DTPeripheralController
     
     fileprivate func logValue(_ value: Data?)
     {
-        if let value = value, let string = String(data: value, encoding: .utf8) {
-            
-            let currentString = self.textView.text + string + "\n"
-            
-            self.textView.text = currentString
-            DTLog(string)
+        guard let value = value, let string = String(data: value, encoding: .utf8) else {
+            return;
         }
+        
+        let currentString = self.textView.text + string + "\n"
+        let range: NSRange = NSRange(location: currentString.count - 2, length: 1);
+        
+        self.textView.text = currentString
+        self.textView.scrollRangeToVisible(range)
+        DTLog(string)
     }
 }
 
@@ -223,5 +230,6 @@ extension DTPeripheralController: CBPeripheralManagerDelegate
         self.logValue(request.value)
         
         peripheral.respond(to: request, withResult: .success)
+        self.sendMessage(with: "Success")
     }
 }

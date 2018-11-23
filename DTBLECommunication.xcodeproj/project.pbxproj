@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		525C73BC21250EC70093A32A /* DTAPP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525C73BB21250EC60093A32A /* DTAPP.swift */; };
 		525C73BE212518A20093A32A /* DTLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525C73BD212518A20093A32A /* DTLog.swift */; };
+		5298045721A7DC1B00BA9F1F /* DTPeripheralsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5298045621A7DC1B00BA9F1F /* DTPeripheralsController.swift */; };
 		52A702B42123D4D100017F9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A702B32123D4D100017F9E /* AppDelegate.swift */; };
 		52A702B62123D4D100017F9E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A702B52123D4D100017F9E /* ViewController.swift */; };
 		52A702B92123D4D100017F9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52A702B72123D4D100017F9E /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 		525C33002126D0990095BBA0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		525C73BB21250EC60093A32A /* DTAPP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTAPP.swift; sourceTree = "<group>"; };
 		525C73BD212518A20093A32A /* DTLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTLog.swift; sourceTree = "<group>"; };
+		5298045621A7DC1B00BA9F1F /* DTPeripheralsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTPeripheralsController.swift; sourceTree = "<group>"; };
 		529DEA3C212A4F1B000AE8F5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		52A702B02123D4D100017F9E /* DTBLECommunication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DTBLECommunication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52A702B32123D4D100017F9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				525C32FE2126A5D80095BBA0 /* README.md */,
 				52A702DA2123DC3600017F9E /* Central.storyboard */,
 				52A702DE2123DC5D00017F9E /* DTCentralController.swift */,
+				5298045621A7DC1B00BA9F1F /* DTPeripheralsController.swift */,
 			);
 			path = Central;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				525C73BE212518A20093A32A /* DTLog.swift in Sources */,
 				52A702E12123DC7600017F9E /* DTPeripheralController.swift in Sources */,
 				525C73BC21250EC70093A32A /* DTAPP.swift in Sources */,
+				5298045721A7DC1B00BA9F1F /* DTPeripheralsController.swift in Sources */,
 				52A702E42124189800017F9E /* DTUUID.swift in Sources */,
 				52A702B62123D4D100017F9E /* ViewController.swift in Sources */,
 				52A702B42123D4D100017F9E /* AppDelegate.swift in Sources */,

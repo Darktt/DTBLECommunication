@@ -33,6 +33,7 @@ public class DTCentralController: UIViewController
     fileprivate var service: CBService?
     fileprivate var characteristic: CBCharacteristic?
     
+    @IBOutlet fileprivate weak var listButton: UIButton!
     @IBOutlet fileprivate weak var test1Button: UIButton!
     @IBOutlet fileprivate weak var test2Button: UIButton!
     
@@ -83,6 +84,9 @@ public class DTCentralController: UIViewController
         
         self.navigationItem.leftBarButtonItem = closeButtonItem
         
+        self.listButton.setBackgroundImage(withColor: UIColor.iOS7Blue, for: .normal)
+        self.listButton.addTarget(self, action: #selector(listAction(_:)), for: .touchUpInside)
+        
         self.test1Button.isEnabled = false
         self.test1Button.setBackgroundImage(withColor: UIColor.deepFacebook, for: .normal)
         self.test1Button.addTarget(self, action: #selector(test1Action(_:)), for: .touchUpInside)
@@ -115,6 +119,14 @@ fileprivate extension DTCentralController
     }
     
     @objc
+    fileprivate func listAction(_ sender: UIButton)
+    {
+        let viewController = DTPeripheralsController.peripheralsController
+        
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    @objc
     fileprivate func test1Action(_ sender: UIButton)
     {
         "你好".data(using: .utf8).unwrapped {
@@ -140,7 +152,9 @@ fileprivate extension DTCentralController
     fileprivate func startDiscover()
     {
         let options: Dictionary<String, Any> = [CBCentralManagerScanOptionAllowDuplicatesKey: false]
-        self.centralManager.scanForPeripherals(withServices: [DTUUID.serviceUuid], options: options)
+        let services: Array<CBUUID> = [DTUUID.serviceUuid]
+        
+        self.centralManager.scanForPeripherals(withServices: services, options: options)
     }
     
     fileprivate func connect(for peripheral: CBPeripheral)

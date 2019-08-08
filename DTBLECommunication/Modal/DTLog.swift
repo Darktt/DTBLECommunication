@@ -107,7 +107,7 @@ public func DTSaveLog<T>(_ message: T, file: String = #file, method: String = #f
 
 fileprivate extension DateFormatter
 {
-    fileprivate static let sharedForLog: DateFormatter = DateFormatter()
+    static let sharedForLog: DateFormatter = DateFormatter()
 }
 
 fileprivate extension String
@@ -119,7 +119,7 @@ fileprivate extension String
         return aString.lastPathComponent
     }
     
-    fileprivate func _appendingPathComponent(_ pathComponent: String) -> String
+    func _appendingPathComponent(_ pathComponent: String) -> String
     {
         let string: NSString = self as NSString
         

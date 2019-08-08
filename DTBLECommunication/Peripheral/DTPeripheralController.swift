@@ -97,7 +97,7 @@ public class DTPeripheralController: UIViewController
 fileprivate extension DTPeripheralController
 {
     @objc
-    fileprivate func closeAction(_ sender: UIBarButtonItem)
+    func closeAction(_ sender: UIBarButtonItem)
     {
         self.dismiss(animated: true, completion: nil)
     }
@@ -107,7 +107,7 @@ fileprivate extension DTPeripheralController
 
 fileprivate extension DTPeripheralController
 {
-    fileprivate func setupService()
+    func setupService()
     {
         let authStatus = CBPeripheralManager.authorizationStatus()
         
@@ -128,7 +128,7 @@ fileprivate extension DTPeripheralController
         self.peripheralManager.add(service)
     }
     
-    fileprivate func startAdvertising()
+    func startAdvertising()
     {
         var advertisementData: Dictionary<String, Any> = [CBAdvertisementDataLocalNameKey: "客顯"];
         advertisementData[CBAdvertisementDataServiceUUIDsKey] = [DTUUID.serviceUuid]
@@ -136,7 +136,7 @@ fileprivate extension DTPeripheralController
         self.peripheralManager.startAdvertising(advertisementData)
     }
     
-    fileprivate func sendMessage(with string: String)
+    func sendMessage(with string: String)
     {
         guard let data: Data = string.data(using: .utf8) else {
             
@@ -146,7 +146,7 @@ fileprivate extension DTPeripheralController
         self.sendMessage(with: data)
     }
     
-    fileprivate func sendMessage(with data: Data)
+    func sendMessage(with data: Data)
     {
         guard let characteristic = self.characteristic,
               let central = self.subscribedCentral else {
@@ -157,7 +157,7 @@ fileprivate extension DTPeripheralController
         self.peripheralManager.updateValue(data, for: characteristic, onSubscribedCentrals: [central])
     }
     
-    fileprivate func logValue(_ value: Data?)
+    func logValue(_ value: Data?)
     {
         guard let value = value, let string = String(data: value, encoding: .utf8) else {
             return;

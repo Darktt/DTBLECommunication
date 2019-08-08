@@ -113,13 +113,13 @@ public class DTCentralController: UIViewController
 fileprivate extension DTCentralController
 {
     @objc
-    fileprivate func closeAction(_ sender: UIBarButtonItem)
+    func closeAction(_ sender: UIBarButtonItem)
     {
         self.dismiss(animated: true, completion: nil)
     }
     
     @objc
-    fileprivate func listAction(_ sender: UIButton)
+    func listAction(_ sender: UIButton)
     {
         let viewController = DTPeripheralsController.peripheralsController
         
@@ -127,7 +127,7 @@ fileprivate extension DTCentralController
     }
     
     @objc
-    fileprivate func test1Action(_ sender: UIButton)
+    func test1Action(_ sender: UIButton)
     {
         "你好".data(using: .utf8).unwrapped {
             
@@ -136,7 +136,7 @@ fileprivate extension DTCentralController
     }
     
     @objc
-    fileprivate func test2Action(_ sender: UIButton)
+    func test2Action(_ sender: UIButton)
     {
         "台灣傳奇高山茶一二三四五六七八九十零一二三四五六七八九十零,1,500".data(using: .utf8).unwrapped {
             
@@ -149,7 +149,7 @@ fileprivate extension DTCentralController
 
 fileprivate extension DTCentralController
 {
-    fileprivate func startDiscover()
+    func startDiscover()
     {
         let options: Dictionary<String, Any> = [CBCentralManagerScanOptionAllowDuplicatesKey: false]
         let services: Array<CBUUID> = [DTUUID.serviceUuid]
@@ -157,7 +157,7 @@ fileprivate extension DTCentralController
         self.centralManager.scanForPeripherals(withServices: services, options: options)
     }
     
-    fileprivate func connect(for peripheral: CBPeripheral)
+    func connect(for peripheral: CBPeripheral)
     {
         let options: Dictionary<String, Any> = [CBConnectPeripheralOptionNotifyOnConnectionKey: true, CBConnectPeripheralOptionNotifyOnNotificationKey: true, CBConnectPeripheralOptionNotifyOnDisconnectionKey: true]
      
@@ -165,7 +165,7 @@ fileprivate extension DTCentralController
         self.centralManager.connect(peripheral, options: options)
     }
     
-    fileprivate func discoverService()
+    func discoverService()
     {
         let services = [DTUUID.serviceUuid]
         
@@ -173,7 +173,7 @@ fileprivate extension DTCentralController
         self.peripheral?.discoverServices(services)
     }
     
-    fileprivate func discoverCharacteristics(for service: CBService)
+    func discoverCharacteristics(for service: CBService)
     {
         let characteristicUUIDs = DTUUID.characteristicUuids
         
@@ -181,12 +181,12 @@ fileprivate extension DTCentralController
         self.peripheral?.discoverCharacteristics(characteristicUUIDs, for: service)
     }
     
-    fileprivate func subscribeCharacteristic(for characteristic: CBCharacteristic)
+    func subscribeCharacteristic(for characteristic: CBCharacteristic)
     {
         self.peripheral?.setNotifyValue(true, for: characteristic)
     }
     
-    fileprivate func logValue(_ value: Data?)
+    func logValue(_ value: Data?)
     {
         if let value = value, let string = String(data: value, encoding: .utf8) {
             

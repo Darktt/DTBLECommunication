@@ -109,7 +109,7 @@ fileprivate extension DTPeripheralsController
 // MARK: - Private Methods -
 fileprivate extension DTPeripheralsController
 {
-    fileprivate func setupNavigationItems()
+    func setupNavigationItems()
     {
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(discoverPeripheralsAction(_:)))
         

@@ -196,10 +196,11 @@ fileprivate extension DTCentralController
 }
 
 // MARK: - Delegate Methods -
-// MARK: #CBCentralManagerDelegate
 
 extension DTCentralController: CBCentralManagerDelegate
 {
+    // MARK: #CBCentralManagerDelegate
+    
     public func centralManagerDidUpdateState(_ central: CBCentralManager)
     {
         let state: CBManagerState = central.state
@@ -244,6 +245,8 @@ extension DTCentralController: CBCentralManagerDelegate
 
 extension DTCentralController: CBPeripheralDelegate
 {
+    // MARK: #CBPeripheralDelegate
+    
     public func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?)
     {
         DTLog("Update rssi: \(RSSI)")

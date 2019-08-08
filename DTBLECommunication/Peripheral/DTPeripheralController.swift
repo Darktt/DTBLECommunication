@@ -176,6 +176,8 @@ fileprivate extension DTPeripheralController
 
 extension DTPeripheralController: CBPeripheralManagerDelegate
 {
+    // MARK: #CBCentralManagerDelegate
+    
     public func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager)
     {
         let state: CBManagerState = peripheral.state

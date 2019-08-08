@@ -118,9 +118,11 @@ fileprivate extension DTPeripheralsController
 }
 
 // MARK: - Delegate Methods -
-// MARK: #UITableViewDataSource
+
 extension DTPeripheralsController: UITableViewDataSource
 {
+    // MARK: #UITableViewDataSource
+    
     public func numberOfSections(in tableView: UITableView) -> Int
     {
         return 1
@@ -157,9 +159,10 @@ extension DTPeripheralsController: UITableViewDataSource
     }
 }
 
-// MARK: #UITableViewDelegate
 extension DTPeripheralsController: UITableViewDelegate
 {
+    // MARK: #UITableViewDelegate
+    
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -171,9 +174,10 @@ extension DTPeripheralsController: UITableViewDelegate
     }
 }
 
-// MARK: #CBCentralManagerDelegate
 extension DTPeripheralsController: CBCentralManagerDelegate
 {
+    // MARK: #CBCentralManagerDelegate
+    
     public func centralManagerDidUpdateState(_ central: CBCentralManager)
     {
         let state: CBManagerState = central.state
@@ -243,6 +247,8 @@ extension DTPeripheralsController: CBCentralManagerDelegate
 
 extension DTPeripheralsController: CBPeripheralDelegate
 {
+    // MARK: #CBPeripheralDelegate
+    
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?)
     {
         DTLog("*********************************************")

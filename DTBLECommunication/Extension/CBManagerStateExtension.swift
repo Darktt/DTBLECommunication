@@ -16,7 +16,7 @@ extension CBManagerState: CustomDebugStringConvertible
         switch self {
             
         case .unknown:
-            description = "unknow"
+            description = "unknown"
             
         case .resetting:
             description = "resetting"

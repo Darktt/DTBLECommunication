@@ -242,7 +242,10 @@ extension DTPeripheralController: CBPeripheralManagerDelegate
     
     public func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest])
     {
-        let request: CBATTRequest = requests.first!
+        guard let request: CBATTRequest = requests.first else {
+            
+            return
+        }
         
         self.logValue(request.value)
         

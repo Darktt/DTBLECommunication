@@ -67,10 +67,10 @@ public class DTCentralController: UIViewController
             self.centralManager.stopScan()
         }
         
-        if let peripheral = self.peripheral {
+        self.peripheral.unwrapped {
             
-            peripheral.delegate = nil
-            self.centralManager.cancelPeripheralConnection(peripheral)
+            $0.delegate = nil
+            self.centralManager.cancelPeripheralConnection($0)
         }
     }
     
@@ -209,6 +209,8 @@ extension DTCentralController: CBCentralManagerDelegate
             
             self.startDiscover()
         }
+        
+        DTLog("Central manager state update to: \(state)")
     }
     
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber)

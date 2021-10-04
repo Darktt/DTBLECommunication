@@ -186,6 +186,8 @@ extension DTPeripheralController: CBPeripheralManagerDelegate
             
             self.setupService()
         }
+        
+        DTLog("Peripheral state update to: \(state)")
     }
     
     public func peripheralManager(_ peripheral: CBPeripheralManager, didAdd service: CBService, error: Error?)

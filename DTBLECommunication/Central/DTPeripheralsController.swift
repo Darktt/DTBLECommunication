@@ -190,6 +190,8 @@ extension DTPeripheralsController: CBCentralManagerDelegate
         let enabled: Bool = (state == .poweredOn)
         
         rightBarButtonItem.isEnabled = enabled
+        
+        DTLog("Central manager state update to: \(state)")
     }
     
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber)
@@ -209,12 +211,12 @@ extension DTPeripheralsController: CBCentralManagerDelegate
         DTLog(peripheral.name ?? "nil")
         DTLog("Adverting Data: \(advertisementData)")
         
-        if let serviceUUID = advertisementData[serviceUUIDKey] {
+        if let serviceUUID: CBUUID = advertisementData[serviceUUIDKey] {
             
             DTLog("Service: \(serviceUUID.uuidString)")
         }
         
-        if let manufacturer = advertisementData[manufacturerKey] {
+        if let manufacturer: Data = advertisementData[manufacturerKey] {
             
             DTLog("Manfacturer: \(manufacturer.debugHexString)")
             
@@ -262,12 +264,10 @@ extension DTPeripheralsController: CBPeripheralDelegate
         
         DTLog("Dicovered services")
         
-        peripheral.services.unwrapped {
-            
-            let uuidStrings: Array<String> = $0.map { $0.uuid.uuidString }
-            
-            DTLog("Service uuids: \(uuidStrings)");
-        }
+        let uuidStrings: Array<String> = peripheral.services?
+                                                    .compactMap({ $0.uuid.uuidString }) ?? []
+        
+        DTLog("Service uuids: \(uuidStrings)")
         
         DTLog("*********************************************")
     }

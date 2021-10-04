@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,23 +15,23 @@
 		52A702B92123D4D100017F9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52A702B72123D4D100017F9E /* Main.storyboard */; };
 		52A702BB2123D4D400017F9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52A702BA2123D4D400017F9E /* Assets.xcassets */; };
 		52A702BE2123D4D400017F9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52A702BC2123D4D400017F9E /* LaunchScreen.storyboard */; };
-		52A702CC2123D6BF00017F9E /* SwiftExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A702CA2123D6B500017F9E /* SwiftExtensions.framework */; };
-		52A702CD2123D6BF00017F9E /* SwiftExtensions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52A702CA2123D6B500017F9E /* SwiftExtensions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		52A702D82123DC3600017F9E /* Central.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52A702DA2123DC3600017F9E /* Central.storyboard */; };
 		52A702DB2123DC3E00017F9E /* Peripheral.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52A702DD2123DC3E00017F9E /* Peripheral.storyboard */; };
 		52A702DF2123DC5D00017F9E /* DTCentralController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A702DE2123DC5D00017F9E /* DTCentralController.swift */; };
 		52A702E12123DC7600017F9E /* DTPeripheralController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A702E02123DC7600017F9E /* DTPeripheralController.swift */; };
 		52A702E42124189800017F9E /* DTUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A702E32124189800017F9E /* DTUUID.swift */; };
+		F26E04F4270AAB2C007066B2 /* SwiftExtensions.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F26E04F3270AAB2C007066B2 /* SwiftExtensions.xcframework */; };
+		F26E04F5270AAB2C007066B2 /* SwiftExtensions.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F26E04F3270AAB2C007066B2 /* SwiftExtensions.xcframework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		52A702C82123D68D00017F9E /* Embed Frameworks */ = {
+		F26E04F6270AAB2C007066B2 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				52A702CD2123D6BF00017F9E /* SwiftExtensions.framework in Embed Frameworks */,
+				F26E04F5270AAB2C007066B2 /* SwiftExtensions.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -58,6 +58,7 @@
 		52A702DE2123DC5D00017F9E /* DTCentralController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTCentralController.swift; sourceTree = "<group>"; };
 		52A702E02123DC7600017F9E /* DTPeripheralController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTPeripheralController.swift; sourceTree = "<group>"; };
 		52A702E32124189800017F9E /* DTUUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTUUID.swift; sourceTree = "<group>"; };
+		F26E04F3270AAB2C007066B2 /* SwiftExtensions.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SwiftExtensions.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52A702CC2123D6BF00017F9E /* SwiftExtensions.framework in Frameworks */,
+				F26E04F4270AAB2C007066B2 /* SwiftExtensions.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +110,7 @@
 		52A702C92123D6A400017F9E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F26E04F3270AAB2C007066B2 /* SwiftExtensions.xcframework */,
 				52A702CA2123D6B500017F9E /* SwiftExtensions.framework */,
 			);
 			name = Frameworks;
@@ -155,7 +157,7 @@
 				52A702AC2123D4D100017F9E /* Sources */,
 				52A702AD2123D4D100017F9E /* Frameworks */,
 				52A702AE2123D4D100017F9E /* Resources */,
-				52A702C82123D68D00017F9E /* Embed Frameworks */,
+				F26E04F6270AAB2C007066B2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

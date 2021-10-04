@@ -1,0 +1,2793 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5 (swiftlang-1300.0.31.1 clang-1300.0.29.1)
+// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name SwiftExtensions
+import AVFoundation
+import CoreBluetooth.CBUUID
+import CommonCrypto
+import CoreBluetooth
+import CoreGraphics
+import CoreImage
+import CoreLocation
+import EventKit
+import Foundation
+import LocalAuthentication
+import MediaPlayer
+import Photos
+import QuartzCore
+import Swift
+@_exported import SwiftExtensions
+import SwiftUI
+import UIKit.UIColor
+import UIKit.UIFont
+import UIKit
+import _Concurrency
+extension UIKit.UIDevice {
+  @_Concurrency.MainActor(unsafe) public static var isJailBroken: Swift.Bool {
+    get
+  }
+  @_Concurrency.MainActor(unsafe) public var isIPadDevice: Swift.Bool {
+    get
+  }
+  @_Concurrency.MainActor(unsafe) public var isIPhoneDevice: Swift.Bool {
+    get
+  }
+  @_Concurrency.MainActor(unsafe) public var deviceModel: Swift.String {
+    get
+  }
+  @_Concurrency.MainActor(unsafe) public static func detailDeviceModel() -> Swift.String
+}
+precedencegroup ConstraintPrecedence {
+  higherThan: AssignmentPrecedence
+  lowerThan: AdditionPrecedence
+}
+infix operator =~= : ConstraintPrecedence
+infix operator <~= : ConstraintPrecedence
+infix operator >~= : ConstraintPrecedence
+infix operator =*= : ConstraintPrecedence
+infix operator <*= : ConstraintPrecedence
+infix operator >*= : ConstraintPrecedence
+@available(macOS 10.11, iOS 9.0, *)
+public protocol ConstraintActivable {
+  associatedtype AnchorType : AnyObject
+  func constraint(equalTo anchor: UIKit.NSLayoutAnchor<Self.AnchorType>, constant c: CoreGraphics.CGFloat) -> UIKit.NSLayoutConstraint
+  func constraint(greaterThanOrEqualTo anchor: UIKit.NSLayoutAnchor<Self.AnchorType>, constant c: CoreGraphics.CGFloat) -> UIKit.NSLayoutConstraint
+  func constraint(lessThanOrEqualTo anchor: UIKit.NSLayoutAnchor<Self.AnchorType>, constant c: CoreGraphics.CGFloat) -> UIKit.NSLayoutConstraint
+}
+@available(macOS 10.11, iOS 9.0, *)
+extension SwiftExtensions.ConstraintActivable {
+  public static func + (lhs: Self, rhs: CoreGraphics.CGFloat) -> (anchor: Self, constant: CoreGraphics.CGFloat)
+  public static func - (lhs: Self, rhs: CoreGraphics.CGFloat) -> (anchor: Self, constant: CoreGraphics.CGFloat)
+  public static func =~= (left: Self, right: Self) -> UIKit.NSLayoutConstraint
+  public static func =~= (left: Self, right: (anchor: Self, constant: CoreGraphics.CGFloat)) -> UIKit.NSLayoutConstraint
+  public static func >~= (left: Self, right: Self) -> UIKit.NSLayoutConstraint
+  public static func >~= (left: Self, right: (anchor: Self, constant: CoreGraphics.CGFloat)) -> UIKit.NSLayoutConstraint
+  public static func <~= (left: Self, right: Self) -> UIKit.NSLayoutConstraint
+  public static func <~= (left: Self, right: (anchor: Self, constant: CoreGraphics.CGFloat)) -> UIKit.NSLayoutConstraint
+  @discardableResult
+  public static func =*= (left: Self, right: Self) -> UIKit.NSLayoutConstraint
+  @discardableResult
+  public static func =*= (left: Self, right: (anchor: Self, constant: CoreGraphics.CGFloat)) -> UIKit.NSLayoutConstraint
+  @discardableResult
+  public static func >*= (left: Self, right: Self) -> UIKit.NSLayoutConstraint
+  @discardableResult
+  public static func >*= (left: Self, right: (anchor: Self, constant: CoreGraphics.CGFloat)) -> UIKit.NSLayoutConstraint
+  @discardableResult
+  public static func <*= (left: Self, right: Self) -> UIKit.NSLayoutConstraint
+  @discardableResult
+  public static func <*= (left: Self, right: (anchor: Self, constant: CoreGraphics.CGFloat)) -> UIKit.NSLayoutConstraint
+}
+@available(macOS 10.11, iOS 9.0, *)
+extension UIKit.NSLayoutXAxisAnchor : SwiftExtensions.ConstraintActivable {
+  public typealias AnchorType = UIKit.NSLayoutXAxisAnchor
+}
+@available(macOS 10.11, iOS 9.0, *)
+extension UIKit.NSLayoutYAxisAnchor : SwiftExtensions.ConstraintActivable {
+  public typealias AnchorType = UIKit.NSLayoutYAxisAnchor
+}
+@available(macOS 10.11, iOS 9.0, *)
+extension UIKit.NSLayoutDimension : SwiftExtensions.ConstraintActivable {
+  public typealias AnchorType = UIKit.NSLayoutDimension
+}
+@available(macOS 10.11, iOS 9.0, *)
+public struct LayoutDimensionInfo {
+}
+@available(macOS 10.11, iOS 9.0, *)
+public func + (left: SwiftExtensions.LayoutDimensionInfo, right: CoreGraphics.CGFloat) -> SwiftExtensions.LayoutDimensionInfo
+@available(macOS 10.11, iOS 9.0, *)
+public func - (left: SwiftExtensions.LayoutDimensionInfo, right: CoreGraphics.CGFloat) -> SwiftExtensions.LayoutDimensionInfo
+@available(macOS 10.11, iOS 9.0, *)
+extension UIKit.NSLayoutDimension {
+  @_Concurrency.MainActor(unsafe) public static func * (left: UIKit.NSLayoutDimension, right: CoreGraphics.CGFloat) -> SwiftExtensions.LayoutDimensionInfo
+  @_Concurrency.MainActor(unsafe) public static func * (left: CoreGraphics.CGFloat, right: UIKit.NSLayoutDimension) -> SwiftExtensions.LayoutDimensionInfo
+  @_Concurrency.MainActor(unsafe) public static func / (left: UIKit.NSLayoutDimension, right: CoreGraphics.CGFloat) -> SwiftExtensions.LayoutDimensionInfo
+  @_Concurrency.MainActor(unsafe) public static func / (left: CoreGraphics.CGFloat, right: UIKit.NSLayoutDimension) -> SwiftExtensions.LayoutDimensionInfo
+  @_Concurrency.MainActor(unsafe) public static func =~= (left: UIKit.NSLayoutDimension, right: CoreGraphics.CGFloat) -> UIKit.NSLayoutConstraint
+  @_Concurrency.MainActor(unsafe) public static func =~= (left: UIKit.NSLayoutDimension, right: SwiftExtensions.LayoutDimensionInfo) -> UIKit.NSLayoutConstraint
+  @_Concurrency.MainActor(unsafe) public static func >~= (left: UIKit.NSLayoutDimension, right: CoreGraphics.CGFloat) -> UIKit.NSLayoutConstraint
+  @_Concurrency.MainActor(unsafe) public static func >~= (left: UIKit.NSLayoutDimension, right: SwiftExtensions.LayoutDimensionInfo) -> UIKit.NSLayoutConstraint
+  @_Concurrency.MainActor(unsafe) public static func <~= (left: UIKit.NSLayoutDimension, right: CoreGraphics.CGFloat) -> UIKit.NSLayoutConstraint
+  @_Concurrency.MainActor(unsafe) public static func <~= (left: UIKit.NSLayoutDimension, right: SwiftExtensions.LayoutDimensionInfo) -> UIKit.NSLayoutConstraint
+  @discardableResult
+  @_Concurrency.MainActor(unsafe) public static func =*= (left: UIKit.NSLayoutDimension, right: CoreGraphics.CGFloat) -> UIKit.NSLayoutConstraint
+  @discardableResult
+  @_Concurrency.MainActor(unsafe) public static func =*= (left: UIKit.NSLayoutDimension, right: SwiftExtensions.LayoutDimensionInfo) -> UIKit.NSLayoutConstraint
+  @discardableResult
+  @_Concurrency.MainActor(unsafe) public static func >*= (left: UIKit.NSLayoutDimension, right: CoreGraphics.CGFloat) -> UIKit.NSLayoutConstraint
+  @discardableResult
+  @_Concurrency.MainActor(unsafe) public static func >*= (left: UIKit.NSLayoutDimension, right: SwiftExtensions.LayoutDimensionInfo) -> UIKit.NSLayoutConstraint
+  @discardableResult
+  @_Concurrency.MainActor(unsafe) public static func <*= (left: UIKit.NSLayoutDimension, right: CoreGraphics.CGFloat) -> UIKit.NSLayoutConstraint
+  @discardableResult
+  @_Concurrency.MainActor(unsafe) public static func <*= (left: UIKit.NSLayoutDimension, right: SwiftExtensions.LayoutDimensionInfo) -> UIKit.NSLayoutConstraint
+}
+extension QuartzCore.CATransform3D {
+  public static let identity: QuartzCore.CATransform3D
+  public var isIdentity: Swift.Bool {
+    get
+  }
+  public var isAffine: Swift.Bool {
+    get
+  }
+  public static func affineTransform(_ affineTransform: CoreGraphics.CGAffineTransform) -> QuartzCore.CATransform3D
+  public init(translationX x: CoreGraphics.CGFloat, y: CoreGraphics.CGFloat, z: CoreGraphics.CGFloat)
+  public init(scaleX x: CoreGraphics.CGFloat, y: CoreGraphics.CGFloat, z: CoreGraphics.CGFloat)
+  public init(rotationAngle angle: QuartzCore.CATransform3D.Angle)
+  public mutating func translationBy(by x: CoreGraphics.CGFloat, y: CoreGraphics.CGFloat, z: CoreGraphics.CGFloat)
+  public mutating func scaleBy(x: CoreGraphics.CGFloat, y: CoreGraphics.CGFloat, z: CoreGraphics.CGFloat)
+  public mutating func rotated(with angle: QuartzCore.CATransform3D.Angle)
+  public func getAffineTransform() -> CoreGraphics.CGAffineTransform?
+}
+extension QuartzCore.CATransform3D : Swift.Equatable {
+  public static func == (lhs: QuartzCore.CATransform3D, rhs: QuartzCore.CATransform3D) -> Swift.Bool
+  public static func * (lhs: QuartzCore.CATransform3D, rhs: QuartzCore.CATransform3D) -> QuartzCore.CATransform3D
+  prefix public static func - (lhs: QuartzCore.CATransform3D) -> QuartzCore.CATransform3D
+}
+extension QuartzCore.CATransform3D {
+  public struct Angle {
+    public var x: CoreGraphics.CGFloat?
+    public var y: CoreGraphics.CGFloat?
+    public var z: CoreGraphics.CGFloat?
+    public init(x: CoreGraphics.CGFloat? = nil, y: CoreGraphics.CGFloat? = nil, z: CoreGraphics.CGFloat? = nil)
+  }
+}
+extension QuartzCore.CATransform3D.Angle : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension UIKit.UIEdgeInsets {
+  public init(top: CoreGraphics.CGFloat? = 0.0, left: CoreGraphics.CGFloat? = 0.0, bottom: CoreGraphics.CGFloat? = 0.0, right: CoreGraphics.CGFloat? = 0.0)
+  public init(top: Swift.Float = 0.0, left: Swift.Float = 0.0, bottom: Swift.Float = 0.0, right: Swift.Float = 0.0)
+  public init(top: Swift.Double = 0.0, left: Swift.Double = 0.0, bottom: Swift.Double = 0.0, right: Swift.Double = 0.0)
+  public init(top: Swift.Int = 0, left: Swift.Int = 0, bottom: Swift.Int = 0, right: Swift.Int = 0)
+}
+extension Swift.Array {
+  public typealias ReturnType = (element: Element, offset: Swift.Array<Element>.Index)
+  public subscript(index: Swift.UInt) -> Element {
+    get
+  }
+  public subscript<RawIndex>(index: RawIndex) -> Element where RawIndex : Swift.RawRepresentable, RawIndex.RawValue == Swift.Array<Element>.Index {
+    get
+  }
+  public subscript(bounds: Swift.ClosedRange<Swift.Int>) -> Swift.Slice<Swift.Array<Element>> {
+    get
+  }
+  public func object(at i: Swift.Array<Element>.Index) -> Swift.Array<Element>.ReturnType
+  public func step(_ stride: Swift.Array<Element>.Index) -> Swift.Array<Element>
+  public func element(for indexPath: Foundation.IndexPath) -> Element
+  public func counted(for isIncluded: (Element) throws -> Swift.Bool) rethrows -> Swift.Int
+  public func filter<Exclude>(excludeBy exclude: Exclude, byCount count: Swift.Int, keyPath: Swift.KeyPath<Element, Exclude>) -> [Element] where Exclude : Swift.Equatable
+  public func filter<Exclude>(excludeBy exclude: Exclude, byCount count: Swift.Int, keyPath: Swift.KeyPath<Element, Exclude?>) -> [Element] where Exclude : Swift.Equatable
+  public func filter<Exclude>(excludeBy exclude: Exclude, byCount count: Swift.Int, comparison: (Element) -> Exclude) -> [Element] where Exclude : Swift.Equatable
+  public mutating func filtered(isIncluded: (Element) -> Swift.Bool)
+}
+extension Swift.Array where Element : Swift.RandomAccessCollection, Element.Index == Swift.Int {
+  public subscript(index: Swift.Array<Element>.Index, innerIndex: Element.Index) -> Element.Element {
+    get
+  }
+  public func element(for indexPath: Foundation.IndexPath) -> Element.Element
+}
+extension Swift.Array where Element == Swift.UInt8 {
+  public var hexString: Swift.String {
+    get
+  }
+  public var debugHexString: Swift.String {
+    get
+  }
+}
+extension Swift.Array {
+  public func filteredArray(predicate: Foundation.NSPredicate) throws -> Swift.Array<Element>
+  public mutating func exchange(from fromIndex: Swift.Int, to toIndex: Swift.Int)
+}
+extension Swift.Array where Element : Swift.Equatable {
+  public func contains(otherArray: Swift.Array<Element>) -> Swift.Bool
+  public func filter(exclude element: Element, byCount count: Swift.Int) -> [Element]
+}
+extension Swift.Array where Element : Swift.Comparable {
+  public func contains(otherArray: Swift.Array<Element>) -> Swift.Bool
+}
+extension Swift.Array where Element : Swift.Hashable {
+  public func union<S>(_ other: S) -> Swift.Array<Element> where Element == S.Element, S : Swift.Sequence
+  public mutating func formUnion<S>(_ other: S) where Element == S.Element, S : Swift.Sequence
+  public func intersection<S>(_ other: S) -> Swift.Array<Element> where Element == S.Element, S : Swift.Sequence
+  public mutating func formIntersection<S>(_ other: S) where Element == S.Element, S : Swift.Sequence
+  public func subtracting<S>(_ other: S) -> Swift.Array<Element> where Element == S.Element, S : Swift.Sequence
+  public mutating func subtract<S>(_ other: S) where Element == S.Element, S : Swift.Sequence
+}
+extension Swift.Array {
+  public mutating func removeDuplicate<Hash>(_ transform: (Element) -> Hash) where Hash : Swift.Hashable
+}
+extension Swift.RangeReplaceableCollection where Self.Element : Swift.Equatable {
+  public mutating func replace(from: Self.Iterator.Element, to: Self.Iterator.Element)
+  public mutating func remove<R>(by other: R) where R : Swift.RangeReplaceableCollection, Self.Iterator == R.Iterator
+  @discardableResult
+  public mutating func remove(object: Self.Iterator.Element) -> Swift.Bool
+  public mutating func removeAll(_ object: Self.Iterator.Element)
+  public mutating func removeAll<R>(_ objects: R) where R : Swift.RangeReplaceableCollection, Self.Iterator == R.Iterator
+}
+extension Swift.Collection {
+  public func element(at index: Self.Index) -> Self.Iterator.Element?
+  public func groups(of number: Swift.Int) -> Swift.Array<Self.SubSequence>
+}
+extension Swift.Sequence {
+  public func zip<S>(with otherSequence: S) -> Swift.Zip2Sequence<Self, S> where S : Swift.Sequence
+  public func toDictionary<Key, Value>(with selectKey: (Self.Iterator.Element) -> (key: Key, value: Value)) -> Swift.Dictionary<Key, Value> where Key : Swift.Hashable
+  public func filter<Value>(by keyPath: Swift.KeyPath<Self.Element, Value>, isIncluded: (Value) throws -> Swift.Bool) rethrows -> Swift.Array<Self.Element>
+  public func sorted<Element>(by keyPath: Swift.KeyPath<Self.Element, Element>, increasingOrder: (Element, Element) throws -> Swift.Bool) rethrows -> Swift.Array<Self.Element>
+}
+extension Swift.Sequence where Self.Element == Swift.Dictionary<Swift.String, Any> {
+  public func flatMapValues<ValueType>(as type: ValueType.Type) -> [ValueType]
+  public func flatMapValues<ValueType>(_ transform: (Swift.Dictionary<Swift.String, Any>.Values) -> [ValueType]) -> [ValueType]
+}
+extension Swift.MutableCollection {
+  public mutating func mutateForEach(_ body: (inout Self.Element) throws -> Swift.Void) rethrows
+}
+extension Swift.MutableCollection where Self : Swift.RandomAccessCollection {
+  public mutating func sort<Element>(by keyPath: Swift.KeyPath<Self.Element, Element>, increasingOrder: (Element, Element) throws -> Swift.Bool) rethrows
+}
+extension Foundation.NSMutableAttributedString {
+  public typealias Color = UIKit.UIColor
+  public typealias Font = UIKit.UIFont
+  public var darkText: Foundation.NSMutableAttributedString {
+    get
+  }
+  public var lightText: Foundation.NSMutableAttributedString {
+    get
+  }
+  public var black: Foundation.NSMutableAttributedString {
+    get
+  }
+  public var blue: Foundation.NSMutableAttributedString {
+    get
+  }
+  public var brown: Foundation.NSMutableAttributedString {
+    get
+  }
+  public var cyan: Foundation.NSMutableAttributedString {
+    get
+  }
+  public var darkGray: Foundation.NSMutableAttributedString {
+    get
+  }
+  public var gray: Foundation.NSMutableAttributedString {
+    get
+  }
+  public var green: Foundation.NSMutableAttributedString {
+    get
+  }
+  public var lightGray: Foundation.NSMutableAttributedString {
+    get
+  }
+  public var magenta: Foundation.NSMutableAttributedString {
+    get
+  }
+  public var orange: Foundation.NSMutableAttributedString {
+    get
+  }
+  public var purple: Foundation.NSMutableAttributedString {
+    get
+  }
+  public var red: Foundation.NSMutableAttributedString {
+    get
+  }
+  public var white: Foundation.NSMutableAttributedString {
+    get
+  }
+  public var yellow: Foundation.NSMutableAttributedString {
+    get
+  }
+  @discardableResult
+  public func forgroundColor(_ color: Foundation.NSMutableAttributedString.Color) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func forgroundColor(_ color: Foundation.NSMutableAttributedString.Color, range: Foundation.NSRange) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func darkText(range: Foundation.NSRange) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func lightText(range: Foundation.NSRange) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func black(range: Foundation.NSRange) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func blue(range: Foundation.NSRange) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func brown(range: Foundation.NSRange) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func cyan(range: Foundation.NSRange) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func darkGray(range: Foundation.NSRange) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func gray(range: Foundation.NSRange) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func green(range: Foundation.NSRange) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func lightGray(range: Foundation.NSRange) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func magenta(range: Foundation.NSRange) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func orange(range: Foundation.NSRange) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func purple(range: Foundation.NSRange) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func red(range: Foundation.NSRange) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func white(range: Foundation.NSRange) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func yellow(range: Foundation.NSRange) -> Foundation.NSMutableAttributedString
+}
+extension Foundation.NSMutableAttributedString {
+  @available(iOS 2.0, macCatalyst 13.0, *)
+  @available(tvOS, unavailable)
+  public var bold: Foundation.NSMutableAttributedString {
+    get
+  }
+  @available(iOS 2.0, macCatalyst 13.0, *)
+  @available(tvOS, unavailable)
+  public var italic: Foundation.NSMutableAttributedString {
+    get
+  }
+  public var strikethrough: Foundation.NSMutableAttributedString {
+    get
+  }
+  public var underline: Foundation.NSMutableAttributedString {
+    get
+  }
+  public func font(_ font: Foundation.NSMutableAttributedString.Font) -> Foundation.NSMutableAttributedString
+  public func font(_ font: Foundation.NSMutableAttributedString.Font, range: Foundation.NSRange) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func systemFont(ofSize size: CoreGraphics.CGFloat) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func systemFont(ofSize size: CoreGraphics.CGFloat, range: Foundation.NSRange) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func bold(ofSize size: CoreGraphics.CGFloat) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func bold(ofSize size: CoreGraphics.CGFloat, range: Foundation.NSRange) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func italic(ofSize size: CoreGraphics.CGFloat) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func italic(ofSize size: CoreGraphics.CGFloat, range: Foundation.NSRange) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func strikethrough(range: Foundation.NSRange) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func strikethroughColor(_ color: UIKit.UIColor) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func strikethroughColor(_ color: UIKit.UIColor, range: Foundation.NSRange) -> Foundation.NSMutableAttributedString
+  @discardableResult
+  public func underline(range: Foundation.NSRange) -> Foundation.NSMutableAttributedString
+}
+extension Swift.Character {
+  public var isEmoji: Swift.Bool {
+    get
+  }
+}
+extension Swift.Character : Swift.Strideable {
+  public func distance(to other: Swift.Character) -> Swift.Int32
+  public func advanced(by n: Swift.Int32) -> Swift.Character
+  public typealias Stride = Swift.Int32
+}
+extension Swift.Unicode.Scalar : Swift.Strideable {
+  public func distance(to other: Swift.Unicode.Scalar) -> Swift.Int32
+  public func advanced(by n: Swift.Int32) -> Swift.Unicode.Scalar
+  public typealias Stride = Swift.Int32
+}
+extension Swift.Double {
+  public static let filterNone: CoreLocation.CLLocationDistance
+}
+extension LocalAuthentication.LAContext {
+  public func canEvaluatePolicy(_ policy: LocalAuthentication.LAPolicy) throws
+  public func evaluatePolicy(_ policy: LocalAuthentication.LAPolicy, localizedReason: Swift.String, reply: @escaping LocalAuthentication.LAContext.ReplyHandler)
+}
+extension LocalAuthentication.LAContext {
+  public typealias EvaluateResult = Swift.Result<Swift.Bool, LocalAuthentication.LAError>
+  public typealias ReplyHandler = (LocalAuthentication.LAContext.EvaluateResult) -> Swift.Void
+}
+extension UIKit.UICollectionView {
+  @_Concurrency.MainActor(unsafe) public func cellForItem(at point: CoreGraphics.CGPoint) -> UIKit.UICollectionViewCell?
+  @_Concurrency.MainActor(unsafe) public func moveItem(_ item: Swift.Int, to toItem: Swift.Int, in section: Swift.Int = 0)
+  @_Concurrency.MainActor(unsafe) public func selectItem(_ item: Swift.Int, section: Swift.Int = 0, animated: Swift.Bool = true, scrollPosition: UIKit.UICollectionView.ScrollPosition = [.top, .left])
+  @_Concurrency.MainActor(unsafe) public func reloadCell(_ cell: UIKit.UICollectionViewCell)
+  @_Concurrency.MainActor(unsafe) public func reloadItem(_ item: Swift.Int, in section: Swift.Int = 0)
+  @_Concurrency.MainActor(unsafe) public func reloadItem(at indexPath: Foundation.IndexPath)
+  @_Concurrency.MainActor(unsafe) public func reloadItems(at items: Swift.ClosedRange<Swift.Int>, in section: Swift.Int = 0)
+  @_Concurrency.MainActor(unsafe) public func reloadSection(_ section: Swift.Int)
+  @_Concurrency.MainActor(unsafe) public func insertItem(_ item: Swift.Int, in section: Swift.Int = 0)
+  @_Concurrency.MainActor(unsafe) public func insertSection(_ section: Swift.Int)
+  @_Concurrency.MainActor(unsafe) public func deleteCell(_ cell: UIKit.UICollectionViewCell)
+  @_Concurrency.MainActor(unsafe) public func deleteItem(_ item: Swift.Int, in section: Swift.Int = 0)
+  @_Concurrency.MainActor(unsafe) public func deleteItem(at indexPath: Foundation.IndexPath)
+  @_Concurrency.MainActor(unsafe) public func deleteSection(_ section: Swift.Int)
+  @_Concurrency.MainActor(unsafe) public func register(_ viewClass: Swift.AnyClass?, forSupplementaryViewOfKind kind: UIKit.UICollectionView.ElementKind, withReuseIdentifier identifier: Swift.String)
+  @_Concurrency.MainActor(unsafe) public func register(_ nib: UIKit.UINib?, forSupplementaryViewOfKind kind: UIKit.UICollectionView.ElementKind, withReuseIdentifier identifier: Swift.String)
+  @_Concurrency.MainActor(unsafe) public func dequeueReusableSupplementaryView(ofKind kind: UIKit.UICollectionView.ElementKind, withReuseIdentifier identifier: Swift.String, for indexPath: Foundation.IndexPath) -> UIKit.UICollectionReusableView
+  @_Concurrency.MainActor(unsafe) public func scrollToItem(_ item: Swift.Int, in section: Swift.Int = 0, at scrollPosition: UIKit.UICollectionView.ScrollPosition, animated: Swift.Bool = true)
+}
+extension UIKit.UICollectionView {
+  public enum ElementKind {
+    case sectionHeader
+    case sectionFooter
+    public static func == (a: UIKit.UICollectionView.ElementKind, b: UIKit.UICollectionView.ElementKind) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension UIKit.UICollectionView.ElementKind : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@available(iOS 3.0, tvOS 14.0, *)
+extension MediaPlayer.MPMediaItem {
+  public struct Property {
+    @available(iOS 4.2, *)
+    public static var persistentID: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    public static var mediaType: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    public static var title: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    public static var albumTitle: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    @available(iOS 4.2, *)
+    public static var albumPersistentID: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    public static var artist: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    @available(iOS 4.2, *)
+    public static var artistPersistentID: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    public static var albumArtist: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    @available(iOS 4.2, *)
+    public static var albumArtistPersistentID: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    public static var genre: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    @available(iOS 4.2, *)
+    public static var genrePersistentID: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    public static var composer: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    @available(iOS 4.2, *)
+    public static var composerPersistentID: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    public static var playbackDuration: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    public static var albumTrackNumber: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    public static var albumTrackCount: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    public static var discNumber: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    public static var discCount: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    @available(iOS 3.0, *)
+    public static var artwork: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    @available(iOS 7.0, *)
+    public static var isExplicit: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    public static var lyrics: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    public static var isCompilation: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    @available(iOS 4.0, *)
+    public static var releaseDate: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    @available(iOS 4.0, *)
+    public static var beatsPerMinute: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    @available(iOS 4.0, *)
+    public static var comments: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    @available(iOS 4.0, *)
+    public static var assetURL: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    @available(iOS 6.0, *)
+    public static var isCloudItem: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    @available(iOS 9.2, *)
+    public static var hasProtectedAsset: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    public static var podcastTitle: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    @available(iOS 4.2, *)
+    public static var podcastPersistentID: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    public static var playCount: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    public static var skipCount: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    public static var rating: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    public static var lastPlayedDate: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    @available(iOS 4.0, *)
+    public static var userGrouping: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    @available(iOS 6.0, *)
+    public static var bookmarkTime: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    @available(iOS 10.0, *)
+    public static var dateAdded: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    @available(iOS 10.3, *)
+    public static var playbackStoreID: MediaPlayer.MPMediaItem.Property {
+      get
+    }
+    public var rawValue: Swift.String
+  }
+}
+@available(iOS 3.0, tvOS 14.0, macCatalyst 13.0, *)
+extension MediaPlayer.MPMediaItem.Property : Swift.Hashable, Swift.Equatable, Swift.RawRepresentable {
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+}
+@available(iOS 3.0, tvOS 14.0, macCatalyst 13.0, *)
+extension Swift.Dictionary where Key == MediaPlayer.MPMediaItem.Property {
+  public var playingInfo: Swift.Dictionary<Swift.String, Value> {
+    get
+  }
+  @available(tvOS, unavailable)
+  public var predicaties: Swift.Set<MediaPlayer.MPMediaPropertyPredicate> {
+    get
+  }
+}
+extension Swift.Bool {
+  public func and(_ other: @autoclosure () throws -> Swift.Bool) rethrows -> Swift.Bool
+  public mutating func fromAnd(_ other: @autoclosure () throws -> Swift.Bool) rethrows
+  public func or(_ other: @autoclosure () throws -> Swift.Bool) rethrows -> Swift.Bool
+  public mutating func fromOr(_ other: @autoclosure () throws -> Swift.Bool) rethrows
+}
+extension Swift.Bool : Swift.ExpressibleByIntegerLiteral {
+  public init(integerLiteral value: Swift.Int)
+  public typealias IntegerLiteralType = Swift.Int
+}
+extension Swift.Bool : Swift.ExpressibleByFloatLiteral {
+  public init(floatLiteral value: Swift.Float)
+  public typealias FloatLiteralType = Swift.Float
+}
+extension Foundation.Bundle {
+  public subscript(key: Swift.String) -> Any? {
+    get
+  }
+  public subscript(key: Foundation.Bundle.Key) -> Any? {
+    get
+  }
+}
+extension Foundation.Bundle {
+  public enum Key : Swift.String {
+    case version
+    case shortVersion
+    case name
+    case displayName
+    case identifier
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+}
+public struct HTTPError : Swift.Error, Foundation.CustomNSError {
+  public let statusCode: SwiftExtensions.HTTPError.StatusCode
+  public var errorCode: Swift.Int {
+    get
+  }
+  public init(_ statusCode: SwiftExtensions.HTTPError.StatusCode)
+  public init(_ code: Swift.Int)
+}
+extension SwiftExtensions.HTTPError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+extension SwiftExtensions.HTTPError : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension SwiftExtensions.HTTPError {
+  public enum StatusCode : Swift.Int {
+    case `continue`
+    case switchingProtocols
+    case processing
+    case created
+    case accepted
+    case nonAuthoritativeInformation
+    case noContent
+    case resetContent
+    case partialContent
+    case multiStatus
+    case alreadyReported
+    case iMUsed
+    case multipleChoices
+    case movedPermanently
+    case found
+    case seeOther
+    case notModified
+    case useProxy
+    case switchProxy
+    case temporaryRedirect
+    case permanentRedirect
+    case badRequest
+    case unauthorized
+    case paymentRequired
+    case forbidden
+    case notFound
+    case methodNotAllowed
+    case notAcceptable
+    case proxyAuthenticationRequired
+    case requestTimeout
+    case conflict
+    case gone
+    case lengthRequired
+    case preconditionFailed
+    case payloadTooLarge
+    case uriTooLong
+    case unsupportedMediaType
+    case rangeNotSatisfiable
+    case expectationFailed
+    case imATeapot
+    case misdirectedRequest
+    case unprocessableEntity
+    case locked
+    case failedDependency
+    case upgradeRequired
+    case preconditionRequired
+    case tooManyRequests
+    case requestHeaderFieldsTooLarge
+    case unavailableForLegalReasons
+    case internalServerError
+    case notImplemented
+    case badGateway
+    case serviceUnavailable
+    case gatewayTimeout
+    case httpVersionNotSupported
+    case variantAlsoNegotiates
+    case insufficientStorage
+    case loopDetected
+    case notExtended
+    case networkAuthenticationRequired
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+}
+extension SwiftExtensions.HTTPError.StatusCode : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CoreGraphics.CGFloat {
+  public var absoluteValue: CoreGraphics.CGFloat {
+    get
+  }
+  public var floorValue: CoreGraphics.CGFloat {
+    get
+  }
+  public var floorIntegerValue: Swift.Int {
+    get
+  }
+  public var ceilValue: CoreGraphics.CGFloat {
+    get
+  }
+  public var ceilIntegerValue: Swift.Int {
+    get
+  }
+  public var roundIntegerValue: Swift.Int {
+    get
+  }
+  public static func pi(_ degress: CoreGraphics.CGFloat) -> CoreGraphics.CGFloat
+  public func format(_ format: Swift.String) -> Swift.String
+  public func maximum(compareWith other: CoreGraphics.CGFloat) -> CoreGraphics.CGFloat
+  public func minimum(compareWith other: CoreGraphics.CGFloat) -> CoreGraphics.CGFloat
+}
+extension UIKit.UIApplication {
+  @_Concurrency.MainActor(unsafe) public func open(_ url: Foundation.URL, options: Swift.Dictionary<UIKit.UIApplication.OpenExternalURLOptionsKey, Any> = [:])
+  @_Concurrency.MainActor(unsafe) public func open(_ string: Swift.String, options: Swift.Dictionary<UIKit.UIApplication.OpenExternalURLOptionsKey, Any> = [:])
+}
+extension Foundation.URLRequest {
+  public var method: SwiftExtensions.HTTPMethod? {
+    get
+    set
+  }
+  public var httpHeaders: Swift.Array<SwiftExtensions.HTTPHeader> {
+    get
+  }
+  public init(url: Foundation.URL, method: SwiftExtensions.HTTPMethod, @SwiftExtensions.HTTPHeaderBuilder headers: () -> Swift.Dictionary<Swift.String, Swift.String>)
+  public mutating func addHTTPHeaders(@SwiftExtensions.HTTPHeaderBuilder _ headers: () -> Swift.Dictionary<Swift.String, Swift.String>)
+}
+@frozen public struct AnyEncodable : Swift.Encodable {
+  public let value: Any
+  public init<T>(_ value: T?)
+}
+extension SwiftExtensions.AnyEncodable : Swift.Equatable {
+  public static func == (lhs: SwiftExtensions.AnyEncodable, rhs: SwiftExtensions.AnyEncodable) -> Swift.Bool
+}
+extension SwiftExtensions.AnyEncodable : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension SwiftExtensions.AnyEncodable : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension SwiftExtensions.AnyEncodable : Swift.ExpressibleByNilLiteral {
+}
+extension SwiftExtensions.AnyEncodable : Swift.ExpressibleByBooleanLiteral {
+  public typealias BooleanLiteralType = Swift.Bool
+}
+extension SwiftExtensions.AnyEncodable : Swift.ExpressibleByIntegerLiteral {
+  public typealias IntegerLiteralType = Swift.Int
+}
+extension SwiftExtensions.AnyEncodable : Swift.ExpressibleByFloatLiteral {
+  public typealias FloatLiteralType = Swift.Double
+}
+extension SwiftExtensions.AnyEncodable : Swift.ExpressibleByStringLiteral {
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.Character
+  public typealias StringLiteralType = Swift.String
+  public typealias UnicodeScalarLiteralType = Swift.UnicodeScalar
+}
+extension SwiftExtensions.AnyEncodable : Swift.ExpressibleByArrayLiteral {
+  public typealias ArrayLiteralElement = Any
+}
+extension SwiftExtensions.AnyEncodable : Swift.ExpressibleByDictionaryLiteral {
+  public typealias Key = Swift.AnyHashable
+  public typealias Value = Any
+}
+@usableFromInline
+internal protocol _AnyEncodable {
+  var value: Any { get }
+  init<T>(_ value: T?)
+}
+extension SwiftExtensions._AnyEncodable {
+  public init(nilLiteral _: ())
+  public init(booleanLiteral value: Swift.Bool)
+  public init(integerLiteral value: Swift.Int)
+  public init(floatLiteral value: Swift.Double)
+  public init(stringLiteral value: Swift.String)
+  public init(extendedGraphemeClusterLiteral value: Swift.Character)
+  public init(unicodeScalarLiteral value: Swift.UnicodeScalar)
+  public init(arrayLiteral elements: Any...)
+  public init(dictionaryLiteral elements: (Swift.AnyHashable, Any)...)
+}
+extension SwiftExtensions._AnyEncodable {
+  public func encode(to encoder: Swift.Encoder) throws
+}
+extension SwiftExtensions.AnyEncodable : SwiftExtensions._AnyEncodable {
+}
+extension Swift.Sequence where Self.Element : Swift.RawRepresentable, Self.Element.RawValue : Swift.Equatable {
+  public var rawValues: [Self.Element.RawValue] {
+    get
+  }
+  public static func ~= <R>(lhs: Self, rhs: R) -> Swift.Bool where R : Swift.Equatable, R == Self.Element.RawValue
+  public static func ~= <R>(lhs: Self, rhs: R?) -> Swift.Bool where R : Swift.Equatable, R == Self.Element.RawValue
+  public func contains<R>(of element: R) -> Swift.Bool where R : Swift.Equatable, R == Self.Element.RawValue
+  public func contains<R>(of element: R?) -> Swift.Bool where R : Swift.Equatable, R == Self.Element.RawValue
+}
+public struct HTTPHeader {
+  public let field: Swift.String
+  public let value: Swift.String
+  public static func accept(_ value: Swift.String) -> SwiftExtensions.HTTPHeader
+  public static func acceptCharset(_ value: Swift.String) -> SwiftExtensions.HTTPHeader
+  public static func acceptEncoding(_ value: Swift.String) -> SwiftExtensions.HTTPHeader
+  public static func acceptLanguage(_ value: Swift.String) -> SwiftExtensions.HTTPHeader
+  public static func authorization(username: Swift.String, password: Swift.String) -> SwiftExtensions.HTTPHeader
+  public static func authorization(token: Swift.String, type: SwiftExtensions.AuthorizationType) -> SwiftExtensions.HTTPHeader
+  public static func authorization(_ value: Swift.String) -> SwiftExtensions.HTTPHeader
+  public static func contentDisposition(_ value: Swift.String, fileName: Swift.String? = nil) -> SwiftExtensions.HTTPHeader
+  public static func contentType(_ value: Swift.String) -> SwiftExtensions.HTTPHeader
+  public static func userAgent(_ value: Swift.String) -> SwiftExtensions.HTTPHeader
+  public static func dictionary<Key, Value>(_ dictionary: Swift.Dictionary<Key, Value>) -> Swift.Array<SwiftExtensions.HTTPHeader> where Key : Swift.StringProtocol, Value : Swift.StringProtocol
+  public init(field: Swift.String, value: Swift.String)
+}
+public enum AuthorizationType {
+  case basic
+  case bearer
+  case digest
+  case hoba
+  case mutual
+  case awsSignature
+  case custom(_: Swift.String)
+}
+extension SwiftExtensions.AuthorizationType : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@_functionBuilder public struct HTTPHeaderBuilder {
+  public static func buildBlock(_ header: SwiftExtensions.HTTPHeader) -> Swift.Dictionary<Swift.String, Swift.String>
+  public static func buildBlock(_ headers: SwiftExtensions.HTTPHeader...) -> Swift.Dictionary<Swift.String, Swift.String>
+}
+extension Swift.Sequence where Self.Element == SwiftExtensions.HTTPHeader {
+  public func dictionary() -> Swift.Dictionary<Swift.String, Swift.String>
+}
+extension CoreGraphics.CGPoint {
+  public var hypotenuse: CoreGraphics.CGFloat {
+    get
+  }
+  public init(x: CoreGraphics.CGFloat? = 0.0, y: CoreGraphics.CGFloat? = 0.0)
+  public init(x: Swift.Float? = 0.0, y: Swift.Float? = 0.0)
+  public init(x: Swift.Double? = 0.0, y: Swift.Double? = 0.0)
+  public init(x: Swift.Int? = 0, y: Swift.Int? = 0)
+  public func average(with point: CoreGraphics.CGPoint) -> CoreGraphics.CGPoint
+  public func differential(to point: CoreGraphics.CGPoint) -> CoreGraphics.CGPoint
+  public func distance(to point: CoreGraphics.CGPoint) -> CoreGraphics.CGFloat
+}
+extension CoreGraphics.CGPoint : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CoreGraphics.CGSize {
+  public init(width: CoreGraphics.CGFloat? = 0.0, height: CoreGraphics.CGFloat? = 0.0)
+  public init(width: Swift.Float? = 0.0, height: Swift.Float? = 0.0)
+  public init(width: Swift.Double? = 0.0, height: Swift.Double? = 0.0)
+  public init(width: Swift.Int? = 0, height: Swift.Int? = 0)
+  public static func square(_ length: CoreGraphics.CGFloat) -> CoreGraphics.CGSize
+  public func aspectRatio(with size: CoreGraphics.CGSize) -> CoreGraphics.CGSize
+  public func aspectRatio(in size: CoreGraphics.CGSize) -> CoreGraphics.CGSize
+  public func fill(with size: CoreGraphics.CGSize) -> CoreGraphics.CGSize
+  public func fill(in size: CoreGraphics.CGSize) -> CoreGraphics.CGSize
+}
+extension CoreGraphics.CGSize : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CoreGraphics.CGRect {
+  public var x: CoreGraphics.CGFloat {
+    get
+    set
+  }
+  public var y: CoreGraphics.CGFloat {
+    get
+    set
+  }
+  public var center: CoreGraphics.CGPoint {
+    get
+  }
+  public init(origin: CoreGraphics.CGPoint)
+  public init(size: CoreGraphics.CGSize)
+  public init(x: CoreGraphics.CGFloat? = 0.0, y: CoreGraphics.CGFloat? = 0.0, width: CoreGraphics.CGFloat? = 0.0, height: CoreGraphics.CGFloat? = 0.0)
+  public init(x: Swift.Float? = 0.0, y: Swift.Float? = 0.0, width: Swift.Float? = 0.0, height: Swift.Float? = 0.0)
+  public init(x: Swift.Double? = 0.0, y: Swift.Double? = 0.0, width: Swift.Double? = 0.0, height: Swift.Double? = 0.0)
+  public init(x: Swift.Int? = 0, y: Swift.Int? = 0, width: Swift.Int? = 0, height: Swift.Int? = 0)
+  public init(aspectRatioSize size: CoreGraphics.CGSize, inBoundingSize boundsSize: CoreGraphics.CGSize)
+  public init(aspectRatioSize size: CoreGraphics.CGSize, inBoundingRect boundsRect: CoreGraphics.CGRect)
+  public init(fillSize size: CoreGraphics.CGSize, inBoundingSize boundsSize: CoreGraphics.CGSize)
+  public init(fillSize size: CoreGraphics.CGSize, inBoundingRect boundsRect: CoreGraphics.CGRect)
+  public mutating func setWidth(_ width: CoreGraphics.CGFloat)
+  public mutating func setHeight(_ height: CoreGraphics.CGFloat)
+}
+extension CoreGraphics.CGRect : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+public protocol AddConstraintable {
+  func addConstraints(_ constraints: UIKit.NSLayoutConstraint...)
+}
+extension UIKit.UIView : SwiftExtensions.AddConstraintable {
+  @_Concurrency.MainActor(unsafe) public func addConstraints(_ constraints: UIKit.NSLayoutConstraint...)
+}
+extension Foundation.URLComponents {
+  public subscript(name: Swift.String) -> Swift.String? {
+    get
+  }
+}
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+public struct PlaceHolder<HolderView> : SwiftUI.ViewModifier where HolderView : SwiftUI.View {
+  public var show: Swift.Bool
+  public var alignment: SwiftUI.Alignment
+  public var placeHolder: HolderView
+  @_Concurrency.MainActor(unsafe) public func body(content: SwiftExtensions.PlaceHolder<HolderView>.Content) -> some SwiftUI.View
+  
+  public typealias Body = @_opaqueReturnTypeOf("$s15SwiftExtensions11PlaceHolderV4body7contentQr0A2UI21_ViewModifier_ContentVyACyxGG_tF", 0) __<HolderView>
+}
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+extension SwiftUI.View {
+  public func placeHolder<Content>(show: Swift.Bool, alignment: SwiftUI.Alignment = .leading, @SwiftUI.ViewBuilder holderView: () -> Content) -> some SwiftUI.View where Content : SwiftUI.View
+  
+}
+extension Swift.Int : Foundation.ReferenceConvertible {
+  public typealias ReferenceType = Foundation.NSNumber
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension Swift.Float : Foundation.ReferenceConvertible {
+  public typealias ReferenceType = Foundation.NSNumber
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension Swift.Double : Foundation.ReferenceConvertible {
+  public typealias ReferenceType = Foundation.NSNumber
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension CoreBluetooth.CBCharacteristicProperties : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension Foundation.Data {
+  public var bytes: Swift.Array<Swift.UInt8> {
+    get
+  }
+  public var hexString: Swift.String {
+    get
+  }
+  public var debugHexString: Swift.String {
+    get
+  }
+  public func string(encoding: Swift.String.Encoding = .utf8) -> Swift.String?
+  public func md5() -> Swift.String
+  public func sha1() -> Swift.String
+  public func sha256() -> Swift.String
+}
+extension Foundation.Date {
+  public var ISO8061FormatString: Swift.String {
+    get
+  }
+  public static func date(byMinuteInterval minutesInterval: Swift.Int) -> Foundation.Date
+  public init?(string: Swift.String, format: Swift.String)
+  public init?(ISO8061String string: Swift.String)
+  public func string(withFormat format: Swift.String = "YYYY/MM/dd HH:mm:ss aa", dateFormatter: Foundation.DateFormatter) -> Swift.String
+  public func mingGoDateString(withFormat format: Swift.String = "Gyyy/MM/dd HH:mm:ss aa") -> Swift.String
+  public func japaneseDateString(withFormat format: Swift.String = "Gyyy年MM月dd日 HH:mm:ss aa") -> Swift.String
+  public mutating func nearestMinutes(by minutesInterval: Swift.Int)
+}
+extension Foundation.Date : Swift.Strideable {
+  public func distance(to other: Foundation.Date) -> Foundation.TimeInterval
+  public func advanced(by n: Foundation.TimeInterval) -> Foundation.Date
+}
+extension Foundation.Date : Swift.CVarArg {
+}
+extension Foundation.DateFormatter {
+  public func date(fromString string: Swift.String) throws -> Foundation.Date
+}
+extension Foundation.DateFormatter {
+  public enum Error : Swift.Error {
+    case formatError
+    public static func == (a: Foundation.DateFormatter.Error, b: Foundation.DateFormatter.Error) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension Foundation.DateFormatter.Error : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension Swift.KeyPath {
+  public var keyPathString: Swift.String {
+    get
+  }
+}
+extension UIKit.UITableView {
+  @_Concurrency.MainActor(unsafe) convenience public init(frame: CoreGraphics.CGRect, style: UIKit.UITableView.Style = .plain, forTarget target: (UIKit.UITableViewDataSource & UIKit.UITableViewDelegate)? = nil)
+  @_Concurrency.MainActor(unsafe) public func indexPathForRow(at view: UIKit.UIView) -> Foundation.IndexPath?
+  @_Concurrency.MainActor(unsafe) public func cellForRow(at point: CoreGraphics.CGPoint) -> UIKit.UITableViewCell?
+  @_Concurrency.MainActor(unsafe) public func cellsForRows(in rect: CoreGraphics.CGRect) -> Swift.Array<UIKit.UITableViewCell>?
+  @_Concurrency.MainActor(unsafe) public func moveRow(_ row: Swift.Int, to toRow: Swift.Int, in section: Swift.Int = 0)
+  @_Concurrency.MainActor(unsafe) public func selectRow(_ row: Swift.Int, section: Swift.Int = 0, animated: Swift.Bool = true, scrollPosition: UIKit.UITableView.ScrollPosition = .none)
+  @_Concurrency.MainActor(unsafe) public func reloadCell(_ cell: UIKit.UITableViewCell, with animation: UIKit.UITableView.RowAnimation = .automatic)
+  @_Concurrency.MainActor(unsafe) public func reloadRow(_ row: Swift.Int, section: Swift.Int = 0, with animation: UIKit.UITableView.RowAnimation = .automatic)
+  @_Concurrency.MainActor(unsafe) public func reloadRow(at indexPath: Foundation.IndexPath, with animation: UIKit.UITableView.RowAnimation = .automatic)
+  @_Concurrency.MainActor(unsafe) public func reloadSection(_ section: Swift.Int, with animation: UIKit.UITableView.RowAnimation = .automatic)
+  @_Concurrency.MainActor(unsafe) public func insertRow(_ row: Swift.Int, section: Swift.Int = 0, with animation: UIKit.UITableView.RowAnimation = .automatic)
+  @_Concurrency.MainActor(unsafe) public func insertRow(at indexPath: Foundation.IndexPath, with animation: UIKit.UITableView.RowAnimation = .automatic)
+  @_Concurrency.MainActor(unsafe) public func insertSection(_ section: Swift.Int, with animation: UIKit.UITableView.RowAnimation = .automatic)
+  @_Concurrency.MainActor(unsafe) public func deleteCell(_ cell: UIKit.UITableViewCell, animation: UIKit.UITableView.RowAnimation = .automatic)
+  @_Concurrency.MainActor(unsafe) public func deleteRow(_ row: Swift.Int, section: Swift.Int = 0, with animation: UIKit.UITableView.RowAnimation = .automatic)
+  @_Concurrency.MainActor(unsafe) public func deleteRow(at indexPath: Foundation.IndexPath, with animation: UIKit.UITableView.RowAnimation = .automatic)
+  @_Concurrency.MainActor(unsafe) public func deleteSection(_ section: Swift.Int, with animation: UIKit.UITableView.RowAnimation = .automatic)
+  @_Concurrency.MainActor(unsafe) public func scrollToRow(_ row: Swift.Int, section: Swift.Int = 0, atScrollPosition scrollPosition: UIKit.UITableView.ScrollPosition = .top, animated: Swift.Bool = true)
+  @_Concurrency.MainActor(unsafe) public func performBatchUpdates(updateExecute: @convention(block) (UIKit.UITableView) -> Swift.Void)
+}
+public struct DictionaryKey<K, V> : Swift.RawRepresentable where K : Swift.Hashable {
+  public var rawValue: K
+  public init(rawValue: K)
+  public typealias RawValue = K
+}
+public protocol DictionaryKeyConvertible {
+}
+extension SwiftExtensions.DictionaryKeyConvertible {
+  public static func key<K>(_ key: K) -> SwiftExtensions.DictionaryKey<K, Self> where K : Swift.Hashable
+}
+extension Swift.Dictionary {
+  public subscript<V>(key: SwiftExtensions.DictionaryKey<Key, V>) -> V? {
+    get
+    set
+  }
+  public subscript(key: SwiftExtensions.DictionaryKey<Key, Value>, default defaultValue: @autoclosure () -> Value) -> Value? {
+    get
+    set
+  }
+  public subscript<RawKey>(key: RawKey) -> Value? where Key == RawKey.RawValue, RawKey : Swift.RawRepresentable {
+    get
+    set
+  }
+  public func hasKey(_ key: Key) -> Swift.Bool
+  public func key(for value: Value) -> Key? where Value : Swift.Comparable
+}
+extension Swift.Dictionary where Value == Swift.Int {
+  public init<S>(counted list: S) where Key == S.Element, S : Swift.Sequence
+  public init<S>(counted list: S, by keyForCouting: (S.Element) -> Key) where S : Swift.Sequence
+  public init<S>(counted list: S, by keyForCouting: (S.Element) -> Key?) where S : Swift.Sequence
+}
+extension Swift.Dictionary where Key == Swift.AnyHashable {
+  public subscript<K, V>(key: SwiftExtensions.DictionaryKey<K, V>) -> V? where K : Swift.Hashable {
+    get
+    set
+  }
+  public subscript<K>(key: SwiftExtensions.DictionaryKey<K, Value>, default defaultValue: @autoclosure () -> Value) -> Value? where K : Swift.Hashable {
+    get
+    set
+  }
+}
+extension Swift.Dictionary where Key : Swift.ExpressibleByStringLiteral {
+  public static func infoDictionary() -> Swift.Dictionary<Swift.String, Any>?
+  public static func localizedInfoDictionary() -> Swift.Dictionary<Swift.String, Any>?
+}
+extension Swift.Dictionary where Key == Swift.String, Value == Any {
+  public var bundleVersion: Swift.String {
+    get
+  }
+  public var bundleShortVersion: Swift.String {
+    get
+  }
+  public var bundleName: Swift.String {
+    get
+  }
+  public var bundleDisplayName: Swift.String {
+    get
+  }
+  public var bundleIdentifier: Swift.String {
+    get
+  }
+}
+extension Swift.Dictionary where Key == Swift.String, Value == Any {
+  @available(iOS 3.2, *)
+  @available(tvOS, unavailable)
+  public var keyboardFrameBegin: CoreGraphics.CGRect {
+    get
+  }
+  @available(iOS 3.2, *)
+  @available(tvOS, unavailable)
+  public var keyboardFrameEnd: CoreGraphics.CGRect {
+    get
+  }
+  @available(iOS 3.2, *)
+  @available(tvOS, unavailable)
+  public var animationCurve: UIKit.UIView.AnimationCurve {
+    get
+  }
+  @available(iOS 3.2, *)
+  @available(tvOS, unavailable)
+  public var animationDuration: Foundation.TimeInterval {
+    get
+  }
+  @available(iOS 9.0, *)
+  @available(tvOS, unavailable)
+  public var isLocalUserInfo: Swift.Bool {
+    get
+  }
+}
+extension Swift.Array : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension Swift.Bool : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension Swift.Character : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension Foundation.CharacterSet : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension Foundation.Data : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension Foundation.Date : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension Swift.Dictionary : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension Swift.Double : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension Swift.Float : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension Swift.Int : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension Swift.Int8 : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension Swift.Int16 : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension Swift.Int32 : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension Swift.Int64 : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension Swift.Set : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension Swift.String : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension Foundation.UUID : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension Foundation.URL : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension Swift.UInt : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension CoreGraphics.CGFloat : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension CoreGraphics.CGSize : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension CoreGraphics.CGPoint : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension CoreGraphics.CGRect : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension CoreBluetooth.CBUUID : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension UIKit.UIBarItem : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension UIKit.UIColor : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension UIKit.UIEdgeInsets : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension UIKit.UIImage : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension UIKit.UIView : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension UIKit.UIView.AnimationCurve : SwiftExtensions.DictionaryKeyConvertible {
+}
+@available(iOS 8.0, macOS 10.13, tvOS 10.0, *)
+extension Photos.PHAsset : SwiftExtensions.DictionaryKeyConvertible {
+}
+extension Foundation.DateComponents {
+  public mutating func weekday(_ weekday: Foundation.Calendar.Weekday)
+}
+extension CoreLocation.CLLocationCoordinate2D {
+  public static let invalid: CoreLocation.CLLocationCoordinate2D
+  public var isValid: Swift.Bool {
+    get
+  }
+  public init(coordinate: (latitude: CoreLocation.CLLocationDegrees, longitude: CoreLocation.CLLocationDegrees))
+  public func adding(_ distance: CoreLocation.CLLocationDistance) -> CoreLocation.CLLocationCoordinate2D
+  public mutating func added(_ distance: CoreLocation.CLLocationDistance)
+  public func bearing(to destinationCoordinate: CoreLocation.CLLocationCoordinate2D) -> CoreLocation.CLLocationDegrees
+}
+extension CoreLocation.CLLocationCoordinate2D : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CoreLocation.CLLocationCoordinate2D : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension CoreLocation.CLLocationCoordinate2D : Swift.Equatable {
+  public static func == (lhs: CoreLocation.CLLocationCoordinate2D, rhs: CoreLocation.CLLocationCoordinate2D) -> Swift.Bool
+  public static func == (lhs: CoreLocation.CLLocation, rhs: CoreLocation.CLLocationCoordinate2D) -> Swift.Bool
+  public static func == (lhs: CoreLocation.CLLocationCoordinate2D, rhs: CoreLocation.CLLocation) -> Swift.Bool
+  public static func != (lhs: CoreLocation.CLLocationCoordinate2D, rhs: CoreLocation.CLLocationCoordinate2D) -> Swift.Bool
+  public static func != (lhs: CoreLocation.CLLocation, rhs: CoreLocation.CLLocationCoordinate2D) -> Swift.Bool
+  public static func != (lhs: CoreLocation.CLLocationCoordinate2D, rhs: CoreLocation.CLLocation) -> Swift.Bool
+}
+extension Swift.Double {
+  public static let equatorialRadius: Swift.Double
+}
+extension UIKit.UIScrollView {
+  @_Concurrency.MainActor(unsafe) public func addSubviews(_ subviews: Swift.Array<UIKit.UIView>, scrollOrientaion orientation: UIKit.UIScrollView.Orientation)
+  @_Concurrency.MainActor(unsafe) public func pageIndex(forCount count: Swift.Int) -> Swift.Int?
+}
+extension UIKit.UIScrollView {
+  public struct Orientation : Swift.OptionSet {
+    public static let vertical: UIKit.UIScrollView.Orientation
+    public static let horizontal: UIKit.UIScrollView.Orientation
+    public static let all: UIKit.UIScrollView.Orientation
+    public let rawValue: Swift.Int
+    public init(rawValue: Swift.Int)
+    public typealias ArrayLiteralElement = UIKit.UIScrollView.Orientation
+    public typealias Element = UIKit.UIScrollView.Orientation
+    public typealias RawValue = Swift.Int
+  }
+}
+extension UIKit.UIVisualEffectView {
+  @_Concurrency.MainActor(unsafe) convenience public init(style: UIKit.UIBlurEffect.Style)
+}
+extension Swift.Double {
+  public var absoluteValue: Swift.Double {
+    get
+  }
+  public var floorValue: Swift.Double {
+    get
+  }
+  public var floorIntegerValue: Swift.Int {
+    get
+  }
+  public var ceilValue: Swift.Double {
+    get
+  }
+  public var ceilIntegerValue: Swift.Int {
+    get
+  }
+  public var roundIntegerValue: Swift.Int {
+    get
+  }
+  public var modulo: (Swift.Double, Swift.Double) {
+    get
+  }
+  public static func pi(_ degress: Swift.Double) -> Swift.Double
+  public func format(_ format: Swift.String) -> Swift.String
+}
+extension Swift.Double {
+  public func equal<Integer>(to value: Integer, execute: (Swift.Double) throws -> Swift.Void) rethrows where Integer : Swift.SignedInteger
+  public func equal<Value>(to value: Value, execute: (Swift.Double) throws -> Swift.Void) rethrows where Value : Swift.BinaryFloatingPoint
+  public func notEqual<Integer>(to value: Integer, execute: (Swift.Double) throws -> Swift.Void) rethrows where Integer : Swift.SignedInteger
+  public func notEqual<Value>(to value: Value, execute: (Swift.Double) throws -> Swift.Void) rethrows where Value : Swift.BinaryFloatingPoint
+  public func contains<Integer>(in range: Swift.ClosedRange<Integer>, execute: (Swift.Double) throws -> Swift.Void) rethrows where Integer : Swift.SignedInteger
+  public func contains<Value>(in range: Swift.ClosedRange<Value>, execute: (Swift.Double) throws -> Swift.Void) rethrows where Value : Swift.BinaryFloatingPoint
+  public func contains<Integer>(in range: Swift.PartialRangeUpTo<Integer>, execute: (Swift.Double) throws -> Swift.Void) rethrows where Integer : Swift.SignedInteger
+  public func contains<Value>(in range: Swift.PartialRangeUpTo<Value>, execute: (Swift.Double) throws -> Swift.Void) rethrows where Value : Swift.BinaryFloatingPoint
+  public func contains<Integer>(in range: Swift.PartialRangeFrom<Integer>, execute: (Swift.Double) throws -> Swift.Void) rethrows where Integer : Swift.SignedInteger
+  public func contains<Value>(in range: Swift.PartialRangeFrom<Value>, execute: (Swift.Double) throws -> Swift.Void) rethrows where Value : Swift.BinaryFloatingPoint
+  public func contains<Integer>(in range: Swift.PartialRangeThrough<Integer>, execute: (Swift.Double) throws -> Swift.Void) rethrows where Integer : Swift.SignedInteger
+  public func contains<Value>(in range: Swift.PartialRangeThrough<Value>, execute: (Swift.Double) throws -> Swift.Void) rethrows where Value : Swift.BinaryFloatingPoint
+  public func contains<Integer>(in range: Swift.Range<Integer>, execute: (Swift.Double) throws -> Swift.Void) rethrows where Integer : Swift.SignedInteger
+  public func contains<Value>(in range: Swift.Range<Value>, execute: (Swift.Double) throws -> Swift.Void) rethrows where Value : Swift.BinaryFloatingPoint
+}
+extension Swift.Double {
+  public var sin: Swift.Double {
+    get
+  }
+  public var cos: Swift.Double {
+    get
+  }
+  public var tan: Swift.Double {
+    get
+  }
+  public var asin: Swift.Double {
+    get
+  }
+  public var acos: Swift.Double {
+    get
+  }
+  public var atan: Swift.Double {
+    get
+  }
+  public var sinh: Swift.Double {
+    get
+  }
+  public var cosh: Swift.Double {
+    get
+  }
+  public var tanh: Swift.Double {
+    get
+  }
+  public var exp: Swift.Double {
+    get
+  }
+  public var sqrt: Swift.Double {
+    get
+  }
+  public var log: Swift.Double {
+    get
+  }
+  public var log10: Swift.Double {
+    get
+  }
+  public var square: Swift.Double {
+    get
+  }
+  public var cube: Swift.Double {
+    get
+  }
+  public func atan2(_ x: Swift.Double) -> Swift.Double
+  public func pow(_ exponent: Swift.Double) -> Swift.Double
+  public func hypotenuse(_ y: Swift.Double) -> Swift.Double
+  public func maximum(compareWith other: Swift.Double) -> Swift.Double
+  public func minimum(compareWith other: Swift.Double) -> Swift.Double
+}
+extension Swift.Double {
+  public var millisecond: Foundation.TimeInterval {
+    get
+  }
+  public var milliseconds: Foundation.TimeInterval {
+    get
+  }
+  public var ms: Foundation.TimeInterval {
+    get
+  }
+  public var second: Foundation.TimeInterval {
+    get
+  }
+  public var seconds: Foundation.TimeInterval {
+    get
+  }
+  public var minute: Foundation.TimeInterval {
+    get
+  }
+  public var minutes: Foundation.TimeInterval {
+    get
+  }
+  public var hour: Foundation.TimeInterval {
+    get
+  }
+  public var hours: Foundation.TimeInterval {
+    get
+  }
+  public var day: Foundation.TimeInterval {
+    get
+  }
+  public var days: Foundation.TimeInterval {
+    get
+  }
+}
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+extension SwiftUI.State {
+  public static func ?? <Wrapped>(lhs: SwiftUI.State<Value>, rhs: Wrapped) -> SwiftUI.State<Wrapped> where Value == Swift.Optional<Wrapped>
+  public func unwrapped<Wrapped>(default: Wrapped) -> SwiftUI.State<Wrapped> where Value == Swift.Optional<Wrapped>
+}
+extension Swift.Float {
+  public var absoluteValue: Swift.Float {
+    get
+  }
+  public var floorValue: Swift.Float {
+    get
+  }
+  public var floorIntegerValue: Swift.Int {
+    get
+  }
+  public var ceilValue: Swift.Float {
+    get
+  }
+  public var ceilIntegerValue: Swift.Int {
+    get
+  }
+  public var roundIntegerValue: Swift.Int {
+    get
+  }
+  public var modulo: (Swift.Float, Swift.Float) {
+    get
+  }
+  public static func pi(_ degress: Swift.Float) -> Swift.Float
+  public func format(_ format: Swift.String) -> Swift.String
+  public func spellOut(local: Foundation.Locale = Locale.current) -> Swift.String
+}
+extension Swift.Float {
+  public func equal<Integer>(to value: Integer, execute: (Swift.Float) throws -> Swift.Void) rethrows where Integer : Swift.SignedInteger
+  public func equal<Value>(to value: Value, execute: (Swift.Float) throws -> Swift.Void) rethrows where Value : Swift.BinaryFloatingPoint
+  public func notEqual<Integer>(to value: Integer, execute: (Swift.Float) throws -> Swift.Void) rethrows where Integer : Swift.SignedInteger
+  public func notEqual<Value>(to value: Value, execute: (Swift.Float) throws -> Swift.Void) rethrows where Value : Swift.BinaryFloatingPoint
+  public func contains<Integer>(in range: Swift.ClosedRange<Integer>, execute: (Swift.Float) throws -> Swift.Void) rethrows where Integer : Swift.SignedInteger
+  public func contains<Value>(in range: Swift.ClosedRange<Value>, execute: (Swift.Float) throws -> Swift.Void) rethrows where Value : Swift.BinaryFloatingPoint
+  public func contains<Integer>(in range: Swift.PartialRangeUpTo<Integer>, execute: (Swift.Float) throws -> Swift.Void) rethrows where Integer : Swift.SignedInteger
+  public func contains<Value>(in range: Swift.PartialRangeUpTo<Value>, execute: (Swift.Float) throws -> Swift.Void) rethrows where Value : Swift.BinaryFloatingPoint
+  public func contains<Integer>(in range: Swift.PartialRangeFrom<Integer>, execute: (Swift.Float) throws -> Swift.Void) rethrows where Integer : Swift.SignedInteger
+  public func contains<Value>(in range: Swift.PartialRangeFrom<Value>, execute: (Swift.Float) throws -> Swift.Void) rethrows where Value : Swift.BinaryFloatingPoint
+  public func contains<Integer>(in range: Swift.PartialRangeThrough<Integer>, execute: (Swift.Float) throws -> Swift.Void) rethrows where Integer : Swift.SignedInteger
+  public func contains<Value>(in range: Swift.PartialRangeThrough<Value>, execute: (Swift.Float) throws -> Swift.Void) rethrows where Value : Swift.BinaryFloatingPoint
+  public func contains<Integer>(in range: Swift.Range<Integer>, execute: (Swift.Float) throws -> Swift.Void) rethrows where Integer : Swift.SignedInteger
+  public func contains<Value>(in range: Swift.Range<Value>, execute: (Swift.Float) throws -> Swift.Void) rethrows where Value : Swift.BinaryFloatingPoint
+}
+extension Swift.Float {
+  public var sin: Swift.Float {
+    get
+  }
+  public var cos: Swift.Float {
+    get
+  }
+  public var tan: Swift.Float {
+    get
+  }
+  public var asin: Swift.Float {
+    get
+  }
+  public var acos: Swift.Float {
+    get
+  }
+  public var atan: Swift.Float {
+    get
+  }
+  public var sinh: Swift.Float {
+    get
+  }
+  public var cosh: Swift.Float {
+    get
+  }
+  public var tanh: Swift.Float {
+    get
+  }
+  public var exp: Swift.Float {
+    get
+  }
+  public var sqrt: Swift.Float {
+    get
+  }
+  public var log: Swift.Float {
+    get
+  }
+  public var log10: Swift.Float {
+    get
+  }
+  public var square: Swift.Float {
+    get
+  }
+  public var cube: Swift.Float {
+    get
+  }
+  public func atan2(_ x: Swift.Float) -> Swift.Float
+  public func pow(_ exponent: Swift.Float) -> Swift.Float
+  public func hypotenuse(_ y: Swift.Float) -> Swift.Float
+  public func maximum(compareWith other: Swift.Float) -> Swift.Float
+  public func minimum(compareWith other: Swift.Float) -> Swift.Float
+}
+extension Foundation.Locale {
+  public static let enUSPosix: Foundation.Locale
+  public static let zhTWPosix: Foundation.Locale
+  public static let jaJPPosix: Foundation.Locale
+  public static let enUK: Foundation.Locale
+  public static let enUS: Foundation.Locale
+  public static let jaJP: Foundation.Locale
+  public static let zhTW: Foundation.Locale
+  public static let zhCN: Foundation.Locale
+}
+@frozen public struct AnyDecodable : Swift.Decodable {
+  public let value: Any
+  public init<T>(_ value: T?)
+}
+extension SwiftExtensions.AnyDecodable : Swift.Equatable {
+  public static func == (lhs: SwiftExtensions.AnyDecodable, rhs: SwiftExtensions.AnyDecodable) -> Swift.Bool
+}
+extension SwiftExtensions.AnyDecodable : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension SwiftExtensions.AnyDecodable : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+@usableFromInline
+internal protocol _AnyDecodable {
+  var value: Any { get }
+  init<T>(_ value: T?)
+}
+extension SwiftExtensions._AnyDecodable {
+  public init(from decoder: Swift.Decoder) throws
+}
+extension SwiftExtensions.AnyDecodable : SwiftExtensions._AnyDecodable {
+}
+extension Swift.Int {
+  public var factorial: Swift.Int {
+    get
+  }
+  public init(_ bool: Swift.Bool)
+  public func format(_ format: Swift.String) -> Swift.String
+  public func times(startWith start: Swift.Int = 1, output: (Swift.Int) -> Swift.Void)
+  public func modulo(by value: Swift.Int) -> Swift.Int
+  public func spellOut(local: Foundation.Locale = Locale.current) -> Swift.String
+  public func maximum(compareWith other: Swift.Int) -> Swift.Int
+  public func minimum(compareWith other: Swift.Int) -> Swift.Int
+}
+extension Swift.Int8 {
+  public func format(_ format: Swift.String) -> Swift.String
+  public func times(startWith start: Swift.Int8 = 1, output: (Swift.Int8) -> Swift.Void)
+  public func modulo(by value: Swift.Int8) -> Swift.Int8
+  public func spellOut(local: Foundation.Locale = Locale.current) -> Swift.String
+  public func maximum(compareWith other: Swift.Int8) -> Swift.Int8
+  public func minimum(compareWith other: Swift.Int8) -> Swift.Int8
+}
+extension Swift.Int16 {
+  public func format(_ format: Swift.String) -> Swift.String
+  public func times(startWith start: Swift.Int16 = 1, output: (Swift.Int16) -> Swift.Void)
+  public func modulo(by value: Swift.Int16) -> Swift.Int16
+  public func spellOut(local: Foundation.Locale = Locale.current) -> Swift.String
+  public func maximum(compareWith other: Swift.Int16) -> Swift.Int16
+  public func minimum(compareWith other: Swift.Int16) -> Swift.Int16
+}
+extension Swift.Int32 {
+  public func format(_ format: Swift.String) -> Swift.String
+  public func times(startWith start: Swift.Int32 = 1, output: (Swift.Int32) -> Swift.Void)
+  public func modulo(by value: Swift.Int32) -> Swift.Int32
+  public func spellOut(local: Foundation.Locale = Locale.current) -> Swift.String
+  public func maximum(compareWith other: Swift.Int32) -> Swift.Int32
+  public func minimum(compareWith other: Swift.Int32) -> Swift.Int32
+}
+extension Swift.Int64 {
+  public func format(_ format: Swift.String) -> Swift.String
+  public func times(startWith start: Swift.Int64 = 1, output: (Swift.Int64) -> Swift.Void)
+  public func modulo(by value: Swift.Int64) -> Swift.Int64
+  public func spellOut(local: Foundation.Locale = Locale.current) -> Swift.String
+  public func maximum(compareWith other: Swift.Int64) -> Swift.Int64
+  public func minimum(compareWith other: Swift.Int64) -> Swift.Int64
+}
+extension Swift.SignedInteger {
+  public var absoluteValue: Self {
+    get
+  }
+  public func equal<Integer>(to value: Integer, execute: (Self) throws -> Swift.Void) rethrows where Integer : Swift.SignedInteger
+  public func equal<Value>(to value: Value, execute: (Self) throws -> Swift.Void) rethrows where Value : Swift.BinaryFloatingPoint
+  public func notEqual<Integer>(to value: Integer, execute: (Self) throws -> Swift.Void) rethrows where Integer : Swift.SignedInteger
+  public func notEqual<Value>(to value: Value, execute: (Self) throws -> Swift.Void) rethrows where Value : Swift.BinaryFloatingPoint
+  public func contains<Integer>(in range: Swift.ClosedRange<Integer>, execute: (Self) throws -> Swift.Void) rethrows where Integer : Swift.SignedInteger
+  public func contains<Value>(in range: Swift.ClosedRange<Value>, execute: (Self) throws -> Swift.Void) rethrows where Value : Swift.BinaryFloatingPoint
+  public func contains<Integer>(in range: Swift.PartialRangeUpTo<Integer>, execute: (Self) throws -> Swift.Void) rethrows where Integer : Swift.SignedInteger
+  public func contains<Value>(in range: Swift.PartialRangeUpTo<Value>, execute: (Self) throws -> Swift.Void) rethrows where Value : Swift.BinaryFloatingPoint
+  public func contains<Integer>(in range: Swift.PartialRangeFrom<Integer>, execute: (Self) throws -> Swift.Void) rethrows where Integer : Swift.SignedInteger
+  public func contains<Value>(in range: Swift.PartialRangeFrom<Value>, execute: (Self) throws -> Swift.Void) rethrows where Value : Swift.BinaryFloatingPoint
+  public func contains<Integer>(in range: Swift.PartialRangeThrough<Integer>, execute: (Self) throws -> Swift.Void) rethrows where Integer : Swift.SignedInteger
+  public func contains<Value>(in range: Swift.PartialRangeThrough<Value>, execute: (Self) throws -> Swift.Void) rethrows where Value : Swift.BinaryFloatingPoint
+  public func contains<Integer>(in range: Swift.Range<Integer>, execute: (Self) throws -> Swift.Void) rethrows where Integer : Swift.SignedInteger
+  public func contains<Value>(in range: Swift.Range<Value>, execute: (Self) throws -> Swift.Void) rethrows where Value : Swift.BinaryFloatingPoint
+}
+extension Swift.UInt {
+  public var factorial: Swift.UInt {
+    get
+  }
+  public func format(_ format: Swift.String) -> Swift.String
+  public func times(startWith start: Swift.UInt = 1, output: (Swift.UInt) -> Swift.Void)
+  public func modulo(by value: Swift.UInt) -> Swift.UInt
+  public func spellOut(local: Foundation.Locale = Locale.current) -> Swift.String
+  public func maximum(compareWith other: Swift.UInt) -> Swift.UInt
+  public func minimum(compareWith other: Swift.UInt) -> Swift.UInt
+}
+extension Swift.UInt8 {
+  public func format(_ format: Swift.String) -> Swift.String
+  public func times(startWith start: Swift.UInt8 = 1, output: (Swift.UInt8) -> Swift.Void)
+  public func modulo(by value: Swift.UInt8) -> Swift.UInt8
+  public func spellOut(local: Foundation.Locale = Locale.current) -> Swift.String
+  public func maximum(compareWith other: Swift.UInt8) -> Swift.UInt8
+  public func minimum(compareWith other: Swift.UInt8) -> Swift.UInt8
+}
+extension Swift.UInt16 {
+  public func format(_ format: Swift.String) -> Swift.String
+  public func times(startWith start: Swift.UInt16 = 1, output: (Swift.UInt16) -> Swift.Void)
+  public func modulo(by value: Swift.UInt16) -> Swift.UInt16
+  public func spellOut(local: Foundation.Locale = Locale.current) -> Swift.String
+  public func maximum(compareWith other: Swift.UInt16) -> Swift.UInt16
+  public func minimum(compareWith other: Swift.UInt16) -> Swift.UInt16
+}
+extension Swift.UInt32 {
+  public func format(_ format: Swift.String) -> Swift.String
+  public func times(startWith start: Swift.UInt32 = 1, output: (Swift.UInt32) -> Swift.Void)
+  public func modulo(by value: Swift.UInt32) -> Swift.UInt32
+  public func spellOut(local: Foundation.Locale = Locale.current) -> Swift.String
+  public func maximum(compareWith other: Swift.UInt32) -> Swift.UInt32
+  public func minimum(compareWith other: Swift.UInt32) -> Swift.UInt32
+}
+extension Swift.UInt64 {
+  public func format(_ format: Swift.String) -> Swift.String
+  public func times(startWith start: Swift.UInt64 = 1, output: (Swift.UInt64) -> Swift.Void)
+  public func modulo(by value: Swift.UInt64) -> Swift.UInt64
+  public func spellOut(local: Foundation.Locale = Locale.current) -> Swift.String
+  public func maximum(compareWith other: Swift.UInt64) -> Swift.UInt64
+  public func minimum(compareWith other: Swift.UInt64) -> Swift.UInt64
+}
+extension UIKit.UIScreen {
+  @_Concurrency.MainActor(unsafe) public func setBrightness(brightness: CoreGraphics.CGFloat, animation: Swift.Bool = true)
+}
+extension UIKit.UINib {
+  @_Concurrency.MainActor(unsafe) convenience public init(nibName name: Swift.String)
+}
+public struct ViewTag<SubView> {
+}
+public protocol Tagable {
+}
+extension SwiftExtensions.Tagable {
+  public static func tag(_ tag: Swift.Int) -> SwiftExtensions.ViewTag<Self>
+}
+extension UIKit.UIView : SwiftExtensions.Tagable {
+  @_Concurrency.MainActor(unsafe) public func find<SubView>(_ viewTag: SwiftExtensions.ViewTag<SubView>) -> SubView?
+}
+extension Swift.Optional {
+  @discardableResult
+  public func unwrapped(_ block: (Wrapped) throws -> Swift.Void) rethrows -> Swift.Optional<Wrapped>
+  @discardableResult
+  public func unwrapped<NewWrapped>(as type: NewWrapped.Type, _ block: (_ wrapped: NewWrapped) throws -> Swift.Void) rethrows -> Swift.Optional<NewWrapped>
+  public func or(_ default: Wrapped) -> Wrapped
+  public func or(else: @autoclosure () -> Wrapped) -> Wrapped
+  public func or(throw exception: Swift.Error) throws -> Wrapped
+  public func and(_ condition: Swift.Bool) -> Swift.Optional<Wrapped>
+  public func and(_ condition: (Wrapped) -> Swift.Bool) -> Swift.Optional<Wrapped>
+  public func and<Other>(_ other: Swift.Optional<Other>) -> Swift.Optional<Other>
+  public func filiter(_ predicate: (Wrapped) -> Swift.Bool) -> Swift.Optional<Wrapped>
+  public func expect(_ message: Swift.String) -> Wrapped
+  public func `else`(_ block: () -> Swift.Void)
+  public func compactMap<T>(_ transfrom: (Wrapped) throws -> Swift.Optional<T>) rethrows -> Swift.Optional<T>
+}
+extension Swift.Optional : Swift.Comparable where Wrapped : Swift.Comparable {
+  public static func < (lhs: Swift.Optional<Wrapped>, rhs: Swift.Optional<Wrapped>) -> Swift.Bool
+  public static func <= (lhs: Swift.Optional<Wrapped>, rhs: Swift.Optional<Wrapped>) -> Swift.Bool
+  public static func > (lhs: Swift.Optional<Wrapped>, rhs: Swift.Optional<Wrapped>) -> Swift.Bool
+  public static func >= (lhs: Swift.Optional<Wrapped>, rhs: Swift.Optional<Wrapped>) -> Swift.Bool
+}
+extension Swift.Optional where Wrapped == Swift.Error {
+  public func or(_ else: (Wrapped) -> Swift.Void)
+}
+extension Foundation.IndexPath {
+  public static func indexPaths(withRows rows: Swift.ClosedRange<Swift.Int>, in section: Swift.Int = 0) -> Swift.Array<Foundation.IndexPath>
+  public static func indexPaths(withItems items: Swift.ClosedRange<Swift.Int>, in section: Swift.Int = 0) -> Swift.Array<Foundation.IndexPath>
+}
+extension Foundation.NotificationCenter {
+  public typealias ObserverBundle = (observer: Any, selector: ObjectiveC.Selector?, name: Foundation.NSNotification.Name, object: Any?)
+  public func addObserver(withBundle bundle: Foundation.NotificationCenter.ObserverBundle)
+  public func addObservers(forBundles bundles: Swift.Array<Foundation.NotificationCenter.ObserverBundle>)
+  public func addObservers(forBundles bundles: Foundation.NotificationCenter.ObserverBundle...)
+  public func removeObserver(withBundle bundle: Foundation.NotificationCenter.ObserverBundle)
+  public func removeObservers(forBundles bundles: Swift.Array<Foundation.NotificationCenter.ObserverBundle>)
+  public func removeObservers(forBundles bundles: Foundation.NotificationCenter.ObserverBundle...)
+}
+extension Swift.Double : Swift.Identifiable {
+  public var id: Swift.Double {
+    get
+  }
+  public typealias ID = Swift.Double
+}
+extension Swift.Float : Swift.Identifiable {
+  public var id: Swift.Float {
+    get
+  }
+  public typealias ID = Swift.Float
+}
+extension Swift.Int : Swift.Identifiable {
+  public var id: Swift.Int {
+    get
+  }
+  public typealias ID = Swift.Int
+}
+extension Swift.Int8 : Swift.Identifiable {
+  public var id: Swift.Int8 {
+    get
+  }
+  public typealias ID = Swift.Int8
+}
+extension Swift.Int16 : Swift.Identifiable {
+  public var id: Swift.Int16 {
+    get
+  }
+  public typealias ID = Swift.Int16
+}
+extension Swift.Int32 : Swift.Identifiable {
+  public var id: Swift.Int32 {
+    get
+  }
+  public typealias ID = Swift.Int32
+}
+extension Swift.Int64 : Swift.Identifiable {
+  public var id: Swift.Int64 {
+    get
+  }
+  public typealias ID = Swift.Int64
+}
+extension Swift.String : Swift.Identifiable {
+  public var id: Swift.String {
+    get
+  }
+  public typealias ID = Swift.String
+}
+public func + (left: CoreGraphics.CGPoint, right: CoreGraphics.CGPoint) -> CoreGraphics.CGPoint
+public func + (left: CoreGraphics.CGSize, right: CoreGraphics.CGSize) -> CoreGraphics.CGSize
+public func + <T>(left: Swift.Dictionary<Swift.AnyHashable, T>, right: Swift.Dictionary<Swift.AnyHashable, T>) -> Swift.Dictionary<Swift.AnyHashable, T>
+public func + <T>(left: Swift.Array<T>, right: T) -> Swift.Array<T>
+public func + <T>(left: Swift.Array<T>, right: Swift.Array<T>) -> Swift.Array<T>
+public func + <T>(left: Swift.Set<T>, right: T) -> Swift.Set<T> where T : Swift.Hashable
+public func + <T>(left: Swift.Set<T>, right: Swift.Set<T>) -> Swift.Set<T> where T : Swift.Hashable
+public func + (left: CoreLocation.CLLocationCoordinate2D, right: CoreLocation.CLLocationDistance) -> CoreLocation.CLLocationCoordinate2D
+public func += (left: inout CoreGraphics.CGPoint, right: CoreGraphics.CGPoint)
+public func += (left: inout CoreGraphics.CGSize, right: CoreGraphics.CGSize)
+public func += <T>(left: inout Swift.Dictionary<Swift.AnyHashable, T>, right: Swift.Dictionary<Swift.AnyHashable, T>)
+public func += <T>(left: inout Swift.Array<T>, right: T)
+public func += <T>(left: inout Swift.Array<T>, right: Swift.Array<T>)
+public func += <T>(left: inout Swift.Set<T>, right: T) where T : Swift.Hashable
+public func += <T>(left: inout Swift.Set<T>, right: Swift.Set<T>) where T : Swift.Hashable
+public func += (left: inout CoreLocation.CLLocationCoordinate2D, right: CoreLocation.CLLocationDistance)
+public func - (left: CoreGraphics.CGPoint, right: CoreGraphics.CGPoint) -> CoreGraphics.CGPoint
+public func - (left: CoreGraphics.CGSize, right: CoreGraphics.CGSize) -> CoreGraphics.CGSize
+public func - (left: Swift.String, right: Swift.String) -> Swift.String
+public func - <T>(left: Swift.Array<T>, right: T) -> Swift.Array<T> where T : Swift.Equatable
+public func - <T>(left: Swift.Array<T>, right: Swift.Array<T>) -> Swift.Array<T> where T : Swift.Equatable
+public func - <T>(left: Swift.Set<T>, right: T) -> Swift.Set<T> where T : Swift.Hashable
+public func - <T>(left: Swift.Set<T>, right: Swift.Set<T>) -> Swift.Set<T> where T : Swift.Hashable
+public func -= (left: inout CoreGraphics.CGPoint, right: CoreGraphics.CGPoint)
+public func -= (left: inout CoreGraphics.CGSize, right: CoreGraphics.CGSize)
+public func -= (left: inout Swift.String, right: Swift.String)
+public func -= <T>(left: inout Swift.Array<T>, right: T) where T : Swift.Equatable
+public func -= <T>(left: inout Swift.Array<T>, right: Swift.Array<T>) where T : Swift.Equatable
+public func -= <T>(left: inout Swift.Set<T>, right: T) where T : Swift.Hashable
+public func -= <T>(left: inout Swift.Set<T>, right: Swift.Set<T>) where T : Swift.Hashable
+infix operator +- : RangeFormationPrecedence
+public func +- <Bound>(left: Bound, right: Bound) -> Swift.ClosedRange<Bound> where Bound : Swift.SignedInteger
+public func +- <Bound>(left: Bound, right: Bound) -> Swift.ClosedRange<Bound> where Bound : Swift.FloatingPoint
+prefix operator +-
+prefix public func +- <I>(number: I) -> Swift.ClosedRange<I> where I : Swift.SignedInteger
+prefix public func +- <F>(number: F) -> Swift.ClosedRange<F> where F : Swift.FloatingPoint
+public func * (left: CoreGraphics.CGPoint, right: CoreGraphics.CGFloat) -> CoreGraphics.CGPoint
+public func * (left: CoreGraphics.CGPoint, right: CoreGraphics.CGPoint) -> CoreGraphics.CGPoint
+public func * (left: CoreGraphics.CGSize, right: CoreGraphics.CGFloat) -> CoreGraphics.CGSize
+public func * (left: CoreGraphics.CGSize, right: CoreGraphics.CGSize) -> CoreGraphics.CGSize
+public func * (left: CoreGraphics.CGRect, right: CoreGraphics.CGFloat) -> CoreGraphics.CGRect
+public func * (left: CoreGraphics.CGRect, right: CoreGraphics.CGPoint) -> CoreGraphics.CGRect
+public func * (left: CoreGraphics.CGRect, right: CoreGraphics.CGSize) -> CoreGraphics.CGRect
+public func * (left: CoreGraphics.CGRect, right: CoreGraphics.CGRect) -> CoreGraphics.CGRect
+public func *= (left: inout CoreGraphics.CGPoint, right: CoreGraphics.CGFloat)
+public func *= (left: inout CoreGraphics.CGPoint, right: CoreGraphics.CGPoint)
+public func *= (left: inout CoreGraphics.CGSize, right: CoreGraphics.CGFloat)
+public func *= (left: inout CoreGraphics.CGSize, right: CoreGraphics.CGSize)
+public func *= (left: inout CoreGraphics.CGRect, right: CoreGraphics.CGFloat)
+public func *= (left: inout CoreGraphics.CGRect, right: CoreGraphics.CGPoint)
+public func *= (left: inout CoreGraphics.CGRect, right: CoreGraphics.CGSize)
+public func *= (left: inout CoreGraphics.CGRect, right: CoreGraphics.CGRect)
+public func / (left: CoreGraphics.CGPoint, right: CoreGraphics.CGFloat) -> CoreGraphics.CGPoint
+public func / (left: CoreGraphics.CGPoint, right: CoreGraphics.CGPoint) -> CoreGraphics.CGPoint
+public func / (left: CoreGraphics.CGSize, right: CoreGraphics.CGFloat) -> CoreGraphics.CGSize
+public func / (left: CoreGraphics.CGSize, right: CoreGraphics.CGSize) -> CoreGraphics.CGSize
+public func / (left: CoreGraphics.CGRect, right: CoreGraphics.CGFloat) -> CoreGraphics.CGRect
+public func / (left: CoreGraphics.CGRect, right: CoreGraphics.CGPoint) -> CoreGraphics.CGRect
+public func / (left: CoreGraphics.CGRect, right: CoreGraphics.CGSize) -> CoreGraphics.CGRect
+public func / (left: CoreGraphics.CGRect, right: CoreGraphics.CGRect) -> CoreGraphics.CGRect
+public func /= (left: inout CoreGraphics.CGPoint, right: CoreGraphics.CGFloat)
+public func /= (left: inout CoreGraphics.CGPoint, right: CoreGraphics.CGPoint)
+public func /= (left: inout CoreGraphics.CGSize, right: CoreGraphics.CGFloat)
+public func /= (left: inout CoreGraphics.CGSize, right: CoreGraphics.CGSize)
+public func /= (left: inout CoreGraphics.CGRect, right: CoreGraphics.CGFloat)
+public func /= (left: inout CoreGraphics.CGRect, right: CoreGraphics.CGPoint)
+public func /= (left: inout CoreGraphics.CGRect, right: CoreGraphics.CGSize)
+public func /= (left: inout CoreGraphics.CGRect, right: CoreGraphics.CGRect)
+precedencegroup ExponentiationPrecedence {
+  associativity: left
+  higherThan: MultiplicationPrecedence
+}
+infix operator ** : ExponentiationPrecedence
+public func ** (left: CoreGraphics.CGFloat, right: CoreGraphics.CGFloat) -> CoreGraphics.CGFloat
+public func ** (left: Swift.Double, right: Swift.Double) -> Swift.Double
+public func ** (left: Swift.Float, right: Swift.Float) -> Swift.Float
+public func ** (left: Swift.Int, right: Swift.Int) -> Swift.Int
+infix operator **= : AssignmentPrecedence
+public func **= (left: inout CoreGraphics.CGFloat, right: CoreGraphics.CGFloat)
+public func **= (left: inout Swift.Double, right: Swift.Double)
+public func **= (left: inout Swift.Float, right: Swift.Float)
+public func **= (left: inout Swift.Int, right: Swift.Int)
+prefix operator √
+prefix public func √ (number: CoreGraphics.CGFloat) -> CoreGraphics.CGFloat
+prefix public func √ (number: Swift.Double) -> Swift.Double
+prefix public func √ (number: Swift.Float) -> Swift.Float
+prefix public func √ (number: Swift.Int) -> Swift.Int
+precedencegroup SqrtPrecedence {
+  associativity: left
+  higherThan: MultiplicationPrecedence
+}
+infix operator √ : SqrtPrecedence
+public func √ (left: CoreGraphics.CGFloat, right: CoreGraphics.CGFloat) -> CoreGraphics.CGFloat
+public func √ (left: Swift.Double, right: Swift.Double) -> Swift.Double
+public func √ (left: Swift.Float, right: Swift.Float) -> Swift.Float
+public func √ (left: Swift.Int, right: Swift.Int) -> Swift.Int
+postfix operator %
+postfix public func % (percentage: CoreGraphics.CGFloat) -> CoreGraphics.CGFloat
+postfix public func % (percentage: Swift.Double) -> Swift.Double
+postfix public func % (percentage: Swift.Float) -> Swift.Float
+postfix public func % (percentage: Swift.Int) -> Swift.Double
+public func < (left: Foundation.NSDate?, right: Foundation.NSDate?) -> Swift.Bool
+public func < (left: Foundation.Date?, right: Foundation.Date?) -> Swift.Bool
+public func > (left: Foundation.NSDate?, right: Foundation.NSDate?) -> Swift.Bool
+public func > (left: Foundation.Date?, right: Foundation.Date?) -> Swift.Bool
+public func | (lhs: Foundation.NSPredicate, rhs: Foundation.NSPredicate) -> Foundation.NSCompoundPredicate
+public func & (lhs: Foundation.NSPredicate, rhs: Foundation.NSPredicate) -> Foundation.NSCompoundPredicate
+public func |= (left: inout Swift.Bool, right: @autoclosure () throws -> Swift.Bool) rethrows
+public func |= (left: inout Foundation.NSPredicate, right: @autoclosure () throws -> Foundation.NSPredicate) rethrows
+public func &= (left: inout Swift.Bool, right: @autoclosure () throws -> Swift.Bool) rethrows
+public func &= (left: inout Foundation.NSPredicate, right: @autoclosure () throws -> Foundation.NSPredicate) rethrows
+prefix public func ! (rhs: Foundation.NSPredicate) -> Foundation.NSCompoundPredicate
+public func ~= (left: CoreGraphics.CGRect, right: CoreGraphics.CGPoint) -> Swift.Bool
+public func ~= (left: CoreGraphics.CGRect, right: CoreGraphics.CGRect) -> Swift.Bool
+public func ~= <T>(left: Swift.Array<T>, right: T) -> Swift.Bool where T : Swift.Equatable
+public func ~= <T>(left: Swift.Set<T>, right: T) -> Swift.Bool where T : Swift.Hashable
+public func ~= <S>(left: Swift.String, right: S) -> Swift.Bool where S : Swift.StringProtocol
+public func ~= (left: CoreLocation.CLCircularRegion, right: CoreLocation.CLLocation) -> Swift.Bool
+public func ~= (left: CoreLocation.CLCircularRegion, right: CoreLocation.CLLocationCoordinate2D) -> Swift.Bool
+infix operator <=> : DefaultPrecedence
+public func <=> <L, R>(left: L, right: R) -> Swift.Bool
+public func <=> <L, R>(left: L?, right: R) -> Swift.Bool
+public func <=> <L, R>(left: L, right: R?) -> Swift.Bool
+infix operator <!> : DefaultPrecedence
+public func <!> <L, R>(left: L, right: R) -> Swift.Bool
+public func <!> <L, R>(left: L?, right: R) -> Swift.Bool
+public func <!> <L, R>(left: L, right: R?) -> Swift.Bool
+extension UIKit.UINavigationController {
+  @_Concurrency.MainActor(unsafe) public func popToViewController(at index: Swift.Int, animated: Swift.Bool)
+}
+extension Swift.String {
+  public static func random(length: Swift.UInt = 15, prefix: Swift.String = "", suffix: Swift.String = "") -> Swift.String
+}
+extension CoreLocation.CLLocationManager {
+  public func stopMonitoringRegions()
+}
+extension CoreLocation.CLLocation {
+  public func bearing(to destination: CoreLocation.CLLocation) -> CoreLocation.CLLocationDegrees
+  public func bearing(to destinationCoordinate: CoreLocation.CLLocationCoordinate2D) -> CoreLocation.CLLocationDegrees
+}
+extension Swift.Array where Element : CoreLocation.CLLocation {
+  public func distance() -> CoreLocation.CLLocationDistance
+  public func center() -> CoreLocation.CLLocation?
+  public func encodedPolyline() -> Swift.String
+}
+extension Foundation.URLSessionConfiguration {
+  public var httpHeaders: Swift.Array<SwiftExtensions.HTTPHeader> {
+    get
+    set
+  }
+}
+extension AVFoundation.AVCaptureDevice {
+  
+  #if compiler(>=5.3) && $AsyncAwait
+  @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
+  public static func requestAccess(to mediaType: AVFoundation.AVMediaType) async -> Swift.Bool
+  #endif
+
+  public static func hasDevice(with position: AVFoundation.AVCaptureDevice.Position) -> Swift.Bool
+  public static func device(preferringPosition position: AVFoundation.AVCaptureDevice.Position) -> AVFoundation.AVCaptureDevice
+  public static func videoDevices(with position: AVFoundation.AVCaptureDevice.Position) -> Swift.Array<AVFoundation.AVCaptureDevice>
+}
+@available(iOS 12.0, *)
+extension UIKit.UITextInputPasswordRules {
+  public typealias Character = UIKit.UITextInputPasswordRules.Rule.Character
+  @_Concurrency.MainActor(unsafe) convenience public init(rules: UIKit.UITextInputPasswordRules.Rule...)
+  @_Concurrency.MainActor(unsafe) convenience public init(rules: Swift.Set<UIKit.UITextInputPasswordRules.Rule>)
+}
+@available(iOS 12.0, *)
+extension UIKit.UITextInputPasswordRules {
+  public struct Rule {
+    public static func required(_ characters: Swift.Set<UIKit.UITextInputPasswordRules.Rule.Character>) -> UIKit.UITextInputPasswordRules.Rule
+    public static func allowed(_ characters: Swift.Set<UIKit.UITextInputPasswordRules.Rule.Character>) -> UIKit.UITextInputPasswordRules.Rule
+    public static func maxConsecutive(_ length: Swift.UInt) -> UIKit.UITextInputPasswordRules.Rule
+    public static func minLength(_ length: Swift.UInt) -> UIKit.UITextInputPasswordRules.Rule
+    public static func maxLength(_ length: Swift.UInt) -> UIKit.UITextInputPasswordRules.Rule
+  }
+}
+@available(iOS 12.0, *)
+extension UIKit.UITextInputPasswordRules.Rule : Swift.CustomStringConvertible, Swift.Hashable {
+  public var description: Swift.String {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+  public struct Character {
+    public static let upper: UIKit.UITextInputPasswordRules.Rule.Character
+    public static let lower: UIKit.UITextInputPasswordRules.Rule.Character
+    public static let digits: UIKit.UITextInputPasswordRules.Rule.Character
+    public static let special: UIKit.UITextInputPasswordRules.Rule.Character
+    public static let asciiPrintable: UIKit.UITextInputPasswordRules.Rule.Character
+    public static let unicode: UIKit.UITextInputPasswordRules.Rule.Character
+    public static func custom(_ characters: Swift.Character...) -> UIKit.UITextInputPasswordRules.Rule.Character
+    public init(rawValue: Swift.String)
+  }
+  public static func == (a: UIKit.UITextInputPasswordRules.Rule, b: UIKit.UITextInputPasswordRules.Rule) -> Swift.Bool
+}
+@available(iOS 12.0, *)
+extension UIKit.UITextInputPasswordRules.Rule.Character : Swift.CustomStringConvertible, Swift.Hashable {
+  public var description: Swift.String {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: UIKit.UITextInputPasswordRules.Rule.Character, b: UIKit.UITextInputPasswordRules.Rule.Character) -> Swift.Bool
+}
+extension UIKit.UIImageView {
+  @_Concurrency.MainActor(unsafe) public func setImage(withURL url: Foundation.URL, completion completionHandler: UIKit.UIImageView.DownloadImageCompleteHandler?)
+  @_Concurrency.MainActor(unsafe) public func setImage(_ image: UIKit.UIImage, animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) public func setImage(_ image: UIKit.UIImage, maskImage: UIKit.UIImage)
+}
+extension UIKit.UIImageView {
+  public typealias DownloadImageCompleteHandler = (UIKit.UIImageView, Swift.Error?) -> Swift.Void
+  public enum DownloadImageError : Swift.Error {
+    case failedToLoadImage
+    public static func == (a: UIKit.UIImageView.DownloadImageError, b: UIKit.UIImageView.DownloadImageError) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension UIKit.UIImageView.DownloadImageError : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension Swift.Range where Bound : Swift.Strideable {
+  public func step<T>(_ stride: T) -> Swift.StrideTo<Bound> where T == Bound.Stride
+}
+extension Swift.ClosedRange where Bound : Swift.Strideable {
+  public func step<T>(_ stride: T) -> Swift.StrideThrough<Bound> where T == Bound.Stride
+}
+public protocol StoryboardLoader {
+}
+extension SwiftExtensions.StoryboardLoader {
+  public static func load(withName storyboardName: Swift.String, identifier: Swift.String) -> Self
+}
+extension UIKit.UIViewController : SwiftExtensions.StoryboardLoader {
+}
+extension Swift.String {
+  public static let empty: Swift.String
+  public var isEmail: Swift.Bool {
+    get
+  }
+  public var localized: Swift.String {
+    get
+  }
+  public var addingPercentEncoding: Swift.String? {
+    get
+  }
+  public var base64EncodedString: Swift.String? {
+    get
+  }
+  public var base64DecodedString: Swift.String? {
+    get
+  }
+  public var hexData: Foundation.Data {
+    get
+  }
+  public var big5Data: Foundation.Data? {
+    get
+  }
+  public var containsEmoji: Swift.Bool {
+    get
+  }
+  public static func generate<Bound>(by range: Swift.ClosedRange<Bound>) -> Swift.Array<Swift.String> where Bound : Swift.Strideable, Bound.Stride : Swift.SignedInteger
+  public static func generate<Bound>(by range: Swift.Range<Bound>) -> Swift.Array<Swift.String> where Bound : Swift.Strideable, Bound.Stride : Swift.SignedInteger
+  public subscript(r: Swift.ClosedRange<Swift.Int>) -> Swift.String {
+    get
+  }
+  public subscript(r: Swift.PartialRangeUpTo<Swift.Int>) -> Swift.String {
+    get
+  }
+  public subscript(r: Swift.PartialRangeFrom<Swift.Int>) -> Swift.String {
+    get
+  }
+  public subscript(r: Swift.PartialRangeThrough<Swift.Int>) -> Swift.String {
+    get
+  }
+  public subscript(r: Swift.Range<Swift.Int>) -> Swift.String {
+    get
+  }
+  public subscript(r: Foundation.NSRange) -> Swift.String {
+    get
+  }
+  public static func priceString(_ value: Swift.Int, symbol: Swift.String = "$", minimumFractionDigits: Swift.Int = 0, maximumFractionDigits: Swift.Int = 0) -> Swift.String?
+  public static func priceString(_ value: Swift.Int8, symbol: Swift.String = "$", minimumFractionDigits: Swift.Int = 0, maximumFractionDigits: Swift.Int = 0) -> Swift.String?
+  public static func priceString(_ value: Swift.Int16, symbol: Swift.String = "$", minimumFractionDigits: Swift.Int = 0, maximumFractionDigits: Swift.Int = 0) -> Swift.String?
+  public static func priceString(_ value: Swift.Int32, symbol: Swift.String = "$", minimumFractionDigits: Swift.Int = 0, maximumFractionDigits: Swift.Int = 0) -> Swift.String?
+  public static func priceString(_ value: Swift.Int64, symbol: Swift.String = "$", minimumFractionDigits: Swift.Int = 0, maximumFractionDigits: Swift.Int = 0) -> Swift.String?
+  public static func priceString(_ value: Swift.Float, symbol: Swift.String = "$", minimumFractionDigits: Swift.Int = 0, maximumFractionDigits: Swift.Int = 0) -> Swift.String?
+  public static func priceString(_ value: Swift.Double, symbol: Swift.String = "$", minimumFractionDigits: Swift.Int = 0, maximumFractionDigits: Swift.Int = 0) -> Swift.String?
+  public static func priceString(_ number: Foundation.NSNumber, symbol: Swift.String = "$", minimumFractionDigits: Swift.Int = 0, maximumFractionDigits: Swift.Int = 0) -> Swift.String?
+  public mutating func maskedString(to character: Swift.Character = "*", visibleLengthOf length: (header: Swift.Int, tail: Swift.Int) = (2, 2))
+  public func maskingString(to character: Swift.Character = "*", visibleLengthOf length: (header: Swift.Int, tail: Swift.Int) = (2, 2)) -> Swift.String
+  public func md5() -> Swift.String
+  public func sha1() -> Swift.String
+  public func sha256() -> Swift.String
+  public func toBytes() -> Swift.Array<Swift.UInt8>
+  public func evaluated(with regularExpression: Swift.String) -> Swift.Bool
+  public mutating func replacedCharacters<T, R>(in range: R, with replacement: T) where T : Swift.StringProtocol, R : Swift.RangeExpression, R.Bound == Swift.String.Index
+  public mutating func replacedCharacters(in range: Foundation.NSRange, with replacement: Swift.String)
+  public func isSameComponents<T>(with other: Swift.String, separatedBy separator: T) -> Swift.Bool where T : Swift.StringProtocol
+  public func isContainsToComponents<T>(with other: Swift.String, separatedBy separator: T) -> Swift.Bool where T : Swift.StringProtocol
+  public func isContainsFromComponents<T>(with other: Swift.String, separatedBy separator: T) -> Swift.Bool where T : Swift.StringProtocol
+  public func isPartOfComponents<T>(with other: Swift.String, separatedBy separator: T) -> Swift.Bool where T : Swift.StringProtocol
+}
+extension Swift.String {
+  public var lastPathComponent: Swift.String {
+    get
+  }
+  public var pathExtension: Swift.String {
+    get
+  }
+  public func appendingPathComponent(_ pathComponent: Swift.String) -> Swift.String
+  public func appendingPathExtension(_ pathExtension: Swift.String) -> Swift.String?
+  @available(iOS 7.0, macOS 10.11, *)
+  public func draw(at point: CoreGraphics.CGPoint, withAttributes attributes: Swift.String.Attributes? = nil)
+  @available(iOS 7.0, macOS 10.11, *)
+  public func draw(in rect: CoreGraphics.CGRect, withAttributes attributes: Swift.String.Attributes? = nil)
+  @available(iOS 7.0, macOS 10.11, *)
+  public func draw(with rect: CoreGraphics.CGRect, options: Foundation.NSString.DrawingOptions = [], attributes: Swift.String.Attributes? = nil, context: UIKit.NSStringDrawingContext? = nil)
+  @available(iOS 7.0, macOS 10.11, *)
+  public func boundingRect(with size: CoreGraphics.CGSize, options: Foundation.NSString.DrawingOptions = [], attributes: Swift.String.Attributes? = nil, context: UIKit.NSStringDrawingContext? = nil) -> CoreGraphics.CGRect
+}
+@available(iOS 7.0, macOS 10.11, *)
+extension Swift.String {
+  public typealias Attributes = Swift.Dictionary<Foundation.NSAttributedString.Key, Any>
+}
+extension Foundation.NSString {
+  @available(iOS 6.0, *)
+  public struct DrawingOptions : Swift.OptionSet {
+    public var rawValue: Swift.Int
+    public static let usesLineFragmentOrigin: Foundation.NSString.DrawingOptions
+    public static let usesFontLeading: Foundation.NSString.DrawingOptions
+    public static let usesDeviceMetrics: Foundation.NSString.DrawingOptions
+    @available(iOS 6.0, *)
+    public static let truncatesLastVisibleLine: Foundation.NSString.DrawingOptions
+    public init(rawValue: Swift.Int)
+    public typealias ArrayLiteralElement = Foundation.NSString.DrawingOptions
+    public typealias Element = Foundation.NSString.DrawingOptions
+    public typealias RawValue = Swift.Int
+  }
+}
+public struct CryptoAlgorithm {
+}
+extension SwiftExtensions.CryptoAlgorithm {
+  public static let MD5: SwiftExtensions.CryptoAlgorithm
+  public static let SHA1: SwiftExtensions.CryptoAlgorithm
+  public static let SHA224: SwiftExtensions.CryptoAlgorithm
+  public static let SHA256: SwiftExtensions.CryptoAlgorithm
+  public static let SHA384: SwiftExtensions.CryptoAlgorithm
+  public static let SHA512: SwiftExtensions.CryptoAlgorithm
+}
+extension Swift.String {
+  public func hmacEncoding(with cryptoAlgorithm: SwiftExtensions.CryptoAlgorithm, key: Swift.String) -> Swift.String?
+  public mutating func hmacEncoded(with cryptoAlgorithm: SwiftExtensions.CryptoAlgorithm, key: Swift.String)
+}
+extension Foundation.TimeZone {
+  public static var GMT: Foundation.TimeZone
+  public static var UTC: Foundation.TimeZone
+  public static var JST: Foundation.TimeZone
+  public static var CST: Foundation.TimeZone
+  public static var SGT: Foundation.TimeZone
+  public static var HKT: Foundation.TimeZone
+}
+extension CoreGraphics.CGAffineTransform {
+  public var scale: CoreGraphics.CGAffineTransform.Scale {
+    get
+    set
+  }
+  public var angle: CoreGraphics.CGFloat {
+    get
+  }
+  public mutating func translateBy(x: CoreGraphics.CGFloat = 0.0, y: CoreGraphics.CGFloat = 0.0)
+  public mutating func scaleBy(x: CoreGraphics.CGFloat = 1.0, y: CoreGraphics.CGFloat = 1.0)
+  public mutating func rotate(by angle: CoreGraphics.CGFloat)
+}
+extension CoreGraphics.CGAffineTransform {
+  public struct Scale {
+    public var tx: CoreGraphics.CGFloat
+    public var ty: CoreGraphics.CGFloat
+    public init(tx: CoreGraphics.CGFloat = 0, ty: CoreGraphics.CGFloat = 0)
+  }
+}
+extension CoreGraphics.CGAffineTransform.Scale : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@available(iOS 8.0, macOS 10.13, tvOS 9.0, watchOS 2.0, *)
+extension CoreBluetooth.CBAttribute {
+  public static func == (left: CoreBluetooth.CBAttribute, right: Swift.String) -> Swift.Bool
+  public static func == (left: CoreBluetooth.CBAttribute, right: CoreBluetooth.CBAttribute) -> Swift.Bool
+}
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+extension SwiftUI.PreviewDevice {
+  public static var mac: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPhoneSE: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPhone7: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPhone7Plus: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPhone8: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPhone8Plus: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPhoneX: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPhoneXS: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPhone11Pro: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPhoneXR: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPhone11: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPhoneXSMax: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPhone11ProMax: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPhoneSESecondGeneration: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPhone12Mini: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPhone12: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPhone12Pro: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPhone12ProMax: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var appleWatch38mm: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var appleWatch42mm: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var appleWatch40mm: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var appleWatch44mm: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPadMini: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPadAir: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPadAir4: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPad: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPadPro9_7: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPadPro10_5: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPadPro11: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var iPadPro12_9: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var tv: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var tv4K: SwiftUI.PreviewDevice {
+    get
+  }
+  public static var tvAt1080P: SwiftUI.PreviewDevice {
+    get
+  }
+}
+public struct AlertAction {
+  public static func `default`(_ title: Swift.String, action: SwiftExtensions.AlertAction.ActionHandler?) -> Swift.Array<SwiftExtensions.AlertAction>
+  public static func destructive(_ title: Swift.String, action: SwiftExtensions.AlertAction.ActionHandler?) -> Swift.Array<SwiftExtensions.AlertAction>
+  public static func cancel(_ title: Swift.String, action: SwiftExtensions.AlertAction.ActionHandler?) -> Swift.Array<SwiftExtensions.AlertAction>
+  public static func forEach<S>(_ sequence: S, @SwiftExtensions.UIAlertActionBuilder body: (S.Element) -> Swift.Array<SwiftExtensions.AlertAction>) -> Swift.Array<SwiftExtensions.AlertAction> where S : Swift.Sequence
+}
+extension SwiftExtensions.AlertAction {
+  public typealias ActionHandler = () -> Swift.Void
+  public static func `default`<Title>(_ title: Title, action: SwiftExtensions.AlertAction.ActionHandler?) -> Swift.Array<SwiftExtensions.AlertAction> where Title : Swift.RawRepresentable, Title.RawValue == Swift.String
+  public static func destructive<Title>(_ title: Title, action: SwiftExtensions.AlertAction.ActionHandler?) -> Swift.Array<SwiftExtensions.AlertAction> where Title : Swift.RawRepresentable, Title.RawValue == Swift.String
+  public static func cancel<Title>(_ title: Title, action: SwiftExtensions.AlertAction.ActionHandler?) -> Swift.Array<SwiftExtensions.AlertAction> where Title : Swift.RawRepresentable, Title.RawValue == Swift.String
+}
+@_functionBuilder public struct UIAlertActionBuilder {
+  public typealias Actions = Swift.Array<SwiftExtensions.AlertAction>
+  public static func buildBlock(_ actions: SwiftExtensions.UIAlertActionBuilder.Actions...) -> SwiftExtensions.UIAlertActionBuilder.Actions
+  public static func buildIf(_ actions: SwiftExtensions.UIAlertActionBuilder.Actions?) -> SwiftExtensions.UIAlertActionBuilder.Actions
+  public static func buildEither(first actions: SwiftExtensions.UIAlertActionBuilder.Actions) -> SwiftExtensions.UIAlertActionBuilder.Actions
+  public static func buildEither(second actions: SwiftExtensions.UIAlertActionBuilder.Actions) -> SwiftExtensions.UIAlertActionBuilder.Actions
+}
+extension UIKit.UIAlertController {
+  @_Concurrency.MainActor(unsafe) public static func alert(title: Swift.String?, message: Swift.String?, @SwiftExtensions.UIAlertActionBuilder actions: () -> Swift.Array<SwiftExtensions.AlertAction>) -> UIKit.UIAlertController
+}
+extension UIKit.UIButton {
+  @_Concurrency.MainActor(unsafe) public func setBackgroundImage(withColor color: UIKit.UIColor, for state: UIKit.UIControl.State)
+  @_Concurrency.MainActor(unsafe) public func setBackgroundImage(withGradientColors colors: Swift.Array<UIKit.UIColor>, locations: Swift.Array<CoreGraphics.CGFloat> = [0.0, 1.0], for state: UIKit.UIControl.State)
+}
+extension QuartzCore.CAMediaTimingFunction {
+  public static let `default`: QuartzCore.CAMediaTimingFunction
+  public static let linear: QuartzCore.CAMediaTimingFunction
+  public static let easeIn: QuartzCore.CAMediaTimingFunction
+  public static let easeOut: QuartzCore.CAMediaTimingFunction
+  public static let easeInOut: QuartzCore.CAMediaTimingFunction
+  convenience public init(controlPoint1 point1: CoreGraphics.CGPoint, point2: CoreGraphics.CGPoint)
+  public func controlPoint(at index: Swift.Int) -> CoreGraphics.CGPoint?
+}
+extension Foundation.HTTPURLResponse {
+  public var httpHeaders: Swift.Array<SwiftExtensions.HTTPHeader> {
+    get
+  }
+}
+extension UIKit.UIImage {
+  public var hasAlpha: Swift.Bool {
+    get
+  }
+  public class func image(withColor color: UIKit.UIColor, size: CoreGraphics.CGSize) -> UIKit.UIImage
+  public static func gradientImage(with rect: CoreGraphics.CGRect, gradientColors: Swift.Array<CoreGraphics.CGColor>, locations: Swift.Array<CoreGraphics.CGFloat> = [0.0, 1.0]) -> UIKit.UIImage
+  public static func gradientImage(with size: CoreGraphics.CGSize, gradientColors: Swift.Array<CoreGraphics.CGColor>, locations: Swift.Array<CoreGraphics.CGFloat> = [0.0, 1.0]) -> UIKit.UIImage
+  convenience public init?(named name: Swift.String, inBundleName bundleName: Swift.String)
+  public func transformed(by transform: CoreGraphics.CGAffineTransform) -> UIKit.UIImage
+  public func addBackgroundColor(_ backgroundColor: UIKit.UIColor) -> UIKit.UIImage
+  public func removeOrientation() -> UIKit.UIImage?
+  public func data(format: UIKit.UIImage.Format) -> Foundation.Data?
+}
+extension UIKit.UIImage {
+  public func pickColorAt(_ point: CoreGraphics.CGPoint) -> UIKit.UIColor?
+  public func convertPoint(_ point: CoreGraphics.CGPoint, from imageView: UIKit.UIImageView) -> CoreGraphics.CGPoint
+}
+extension UIKit.UIImage {
+  public enum Format {
+    case png
+    case jpeg(compressionQuality: CoreGraphics.CGFloat)
+  }
+}
+extension UIKit.UIImage.Format : Swift.Equatable {
+  public static func == (lhs: UIKit.UIImage.Format, rhs: UIKit.UIImage.Format) -> Swift.Bool
+}
+extension UIKit.UIImage.Orientation {
+  public var angle: CoreGraphics.CGFloat {
+    get
+  }
+}
+extension Foundation.NSNumber {
+  convenience public init<S>(_ value: S) where S : Swift.SignedNumeric
+}
+@frozen public struct AnyCodable : Swift.Codable {
+  public let value: Any
+  public init<T>(_ value: T?)
+}
+extension SwiftExtensions.AnyCodable : SwiftExtensions._AnyEncodable, SwiftExtensions._AnyDecodable {
+}
+extension SwiftExtensions.AnyCodable : Swift.ExpressibleByNilLiteral {
+}
+extension SwiftExtensions.AnyCodable : Swift.ExpressibleByBooleanLiteral {
+  public typealias BooleanLiteralType = Swift.Bool
+}
+extension SwiftExtensions.AnyCodable : Swift.ExpressibleByIntegerLiteral {
+  public typealias IntegerLiteralType = Swift.Int
+}
+extension SwiftExtensions.AnyCodable : Swift.ExpressibleByFloatLiteral {
+  public typealias FloatLiteralType = Swift.Double
+}
+extension SwiftExtensions.AnyCodable : Swift.ExpressibleByStringLiteral {
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.Character
+  public typealias StringLiteralType = Swift.String
+  public typealias UnicodeScalarLiteralType = Swift.UnicodeScalar
+}
+extension SwiftExtensions.AnyCodable : Swift.ExpressibleByArrayLiteral {
+  public typealias ArrayLiteralElement = Any
+}
+extension SwiftExtensions.AnyCodable : Swift.ExpressibleByDictionaryLiteral {
+  public typealias Key = Swift.AnyHashable
+  public typealias Value = Any
+}
+extension SwiftExtensions.AnyCodable : Swift.Equatable {
+  public static func == (lhs: SwiftExtensions.AnyCodable, rhs: SwiftExtensions.AnyCodable) -> Swift.Bool
+}
+extension SwiftExtensions.AnyCodable : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension SwiftExtensions.AnyCodable : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension EventKit.EKEventStore {
+  public static let sharded: EventKit.EKEventStore
+  public var source: EventKit.EKSource {
+    get
+  }
+  public func events(with identifiers: Swift.Array<Swift.String>) -> (events: Swift.Array<EventKit.EKEvent>, removed: Swift.Array<Swift.String>?)
+}
+public protocol Appliable : AnyObject {
+  init()
+}
+extension SwiftExtensions.Appliable {
+  public init(_ configuration: (Self) throws -> Swift.Void) rethrows
+  public static func apply(_ block: () throws -> Self) rethrows -> Self
+  @discardableResult
+  public func apply(_ block: (Self) throws -> Swift.Void) rethrows -> Self
+}
+extension ObjectiveC.NSObject : SwiftExtensions.Appliable {
+}
+extension CoreLocation.CLCircularRegion {
+  convenience public init(latitude: CoreLocation.CLLocationDistance, longitude: CoreLocation.CLLocationDistance, radius: CoreLocation.CLLocationDistance, identifier: Swift.String)
+}
+public enum HTTPMethod : Swift.String {
+  case connect
+  case delete
+  case get
+  case head
+  case options
+  case patch
+  case post
+  case put
+  case trace
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+extension SwiftExtensions.HTTPMethod : Swift.Equatable {
+  public static func == (lhs: Swift.String, rhs: SwiftExtensions.HTTPMethod) -> Swift.Bool
+  public static func == (lhs: SwiftExtensions.HTTPMethod, rhs: Swift.String) -> Swift.Bool
+  public static func == (lhs: Swift.String?, rhs: SwiftExtensions.HTTPMethod) -> Swift.Bool
+  public static func == (lhs: SwiftExtensions.HTTPMethod, rhs: Swift.String?) -> Swift.Bool
+  public static func == (lhs: SwiftExtensions.HTTPMethod, rhs: SwiftExtensions.HTTPMethod) -> Swift.Bool
+}
+extension Foundation.Calendar {
+  public static var gregorian: Foundation.Calendar
+  public static var buddhist: Foundation.Calendar
+  public static var chinese: Foundation.Calendar
+  public static var coptic: Foundation.Calendar
+  public static var ethiopicAmeteMihret: Foundation.Calendar
+  public static var ethiopicAmeteAlem: Foundation.Calendar
+  public static var hebrew: Foundation.Calendar
+  public static var iso8601: Foundation.Calendar
+  public static var indian: Foundation.Calendar
+  public static var islamic: Foundation.Calendar
+  public static var islamicCivil: Foundation.Calendar
+  public static var japanese: Foundation.Calendar
+  public static var persian: Foundation.Calendar
+  public static var republicOfChina: Foundation.Calendar
+  public static var islamicTabular: Foundation.Calendar
+  public static var islamicUmmAlQura: Foundation.Calendar
+  public func numberOfDaysInMonth(for date: Foundation.Date) -> Swift.Int
+  public mutating func firstWeekday(_ weekday: Foundation.Calendar.Weekday)
+}
+extension Foundation.Calendar {
+  public enum Weekday : Swift.Int {
+    case sunday
+    case monday
+    case tuesday
+    case wednesday
+    case thursday
+    case friday
+    case saturday
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+}
+extension UIKit.UISegmentedControl {
+  @_Concurrency.MainActor(unsafe) public func setTitles(titles: Swift.Array<Swift.String>, animated: Swift.Bool = false)
+  @_Concurrency.MainActor(unsafe) public func setImages(images: Swift.Array<UIKit.UIImage>, animated: Swift.Bool = false)
+}
+extension UIKit.UIBarButtonItem {
+  @_Concurrency.MainActor(unsafe) public static var flexibleSpace: UIKit.UIBarButtonItem
+  @_Concurrency.MainActor(unsafe) public static var negativeSeparator: UIKit.UIBarButtonItem
+  @_Concurrency.MainActor(unsafe) public static var backButtonItem: UIKit.UIBarButtonItem
+  @_Concurrency.MainActor(unsafe) public static func fixedSpace(_ width: CoreGraphics.CGFloat = 0.0) -> UIKit.UIBarButtonItem
+  @_Concurrency.MainActor(unsafe) convenience public init(customView: () -> UIKit.UIView)
+  @_Concurrency.MainActor(unsafe) public func addTarget(_ target: Swift.AnyObject, action: ObjectiveC.Selector)
+}
+extension UIKit.UIViewController {
+  @_Concurrency.MainActor(unsafe) convenience public init(nibName: Swift.String)
+  @_Concurrency.MainActor(unsafe) public func toolbarItem(at index: Swift.Int) -> UIKit.UIBarButtonItem?
+  
+  #if compiler(>=5.3) && $AsyncAwait
+  @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
+  @_Concurrency.MainActor(unsafe) public func present(_ viewControllerToPresent: UIKit.UIViewController, animated: Swift.Bool) async
+  #endif
+
+  @_Concurrency.MainActor(unsafe) public func presentFullScreen(_ viewControllerToPresent: UIKit.UIViewController, animated: Swift.Bool, completion: (() -> Swift.Void)? = nil)
+  
+  #if compiler(>=5.3) && $AsyncAwait
+  @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
+  @_Concurrency.MainActor(unsafe) public func presentFullScreen(_ viewControllerToPresent: UIKit.UIViewController, animated: Swift.Bool) async
+  #endif
+
+  
+  #if compiler(>=5.3) && $AsyncAwait
+  @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
+  @_Concurrency.MainActor(unsafe) public func dismiss(animated: Swift.Bool) async
+  #endif
+
+  @_Concurrency.MainActor(unsafe) public func presentedViewController<ViewController>(of type: ViewController.Type) -> ViewController? where ViewController : UIKit.UIViewController
+  @_Concurrency.MainActor(unsafe) public func childViewController<ViewController>(of type: ViewController.Type) -> ViewController? where ViewController : UIKit.UIViewController
+  @_Concurrency.MainActor(unsafe) public func filterChildViewController<ViewController>(exception exceptionController: ViewController, execution: (ViewController) -> Swift.Void) where ViewController : UIKit.UIViewController
+  @_Concurrency.MainActor(unsafe) public func presentErrorAlert(error: Foundation.CustomNSError, alertHandler: (() -> Swift.Void)? = nil)
+  @_Concurrency.MainActor(unsafe) public func presentErrorAlert(error: Swift.Error, alertHandler: (() -> Swift.Void)? = nil)
+  @_Concurrency.MainActor(unsafe) public func presentErrorAlert(error: Swift.CustomStringConvertible & Swift.Error, alertHandler: (() -> Swift.Void)? = nil)
+  @_Concurrency.MainActor(unsafe) public func presentAlert(title: Swift.String?, message: Swift.String?, cancelTitle: Swift.String = "Dismiss".localized, alertHandler: (() -> Swift.Void)? = nil)
+  @_Concurrency.MainActor(unsafe) public func presentAlert(title: Swift.String?, message: Swift.String?, actions: Swift.Array<UIKit.UIAlertAction>)
+}
+extension Foundation.NSPredicate {
+  public var not: Foundation.NSCompoundPredicate {
+    get
+  }
+  public func and(_ predicate: Foundation.NSPredicate) -> Foundation.NSCompoundPredicate
+  public func and(_ predicates: Swift.Array<Foundation.NSPredicate>) -> Foundation.NSCompoundPredicate
+  public func or(_ predicate: Foundation.NSPredicate) -> Foundation.NSCompoundPredicate
+  public func or(_ predicates: Swift.Array<Foundation.NSPredicate>) -> Foundation.NSCompoundPredicate
+}
+extension UIKit.UIColor {
+  public var components: UIKit.UIColor.Components {
+    get
+  }
+  public var hexString: Swift.String {
+    get
+  }
+  convenience public init(hex hexString: Swift.String) throws
+  convenience public init(red: CoreGraphics.CGFloat, green: CoreGraphics.CGFloat, blue: CoreGraphics.CGFloat)
+}
+extension UIKit.UIColor {
+  public static var random: UIKit.UIColor {
+    get
+  }
+  public static var deepFacebook: UIKit.UIColor {
+    get
+  }
+  public static var iOS7White: UIKit.UIColor {
+    get
+  }
+  public static var iOS7Blue: UIKit.UIColor {
+    get
+  }
+}
+extension UIKit.UIColor {
+  public enum InputError : Swift.Error {
+    case missingHashMarkAsPrefix
+    case unableToScanHexValue
+    case mismatchedHexStringLength
+    public static func == (a: UIKit.UIColor.InputError, b: UIKit.UIColor.InputError) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension UIKit.UIColor.InputError : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension UIKit.UIColor {
+  public typealias Components = (red: CoreGraphics.CGFloat, green: CoreGraphics.CGFloat, blue: CoreGraphics.CGFloat, alpha: CoreGraphics.CGFloat)
+}
+extension Swift.Result {
+  public var error: Failure? {
+    get
+  }
+}
+extension Swift.Result where Success == Swift.Void {
+  public static var success: Swift.Result<Swift.Void, Failure> {
+    get
+  }
+}
+extension UIKit.UIStackView {
+  @_Concurrency.MainActor(unsafe) public func removeArrangedSubviews()
+}
+extension CoreBluetooth.CBUUID {
+  public static let genericAccess: CoreBluetooth.CBUUID
+  public static let genericAttribute: CoreBluetooth.CBUUID
+  public static let immediateAlert: CoreBluetooth.CBUUID
+  public static let linkLoss: CoreBluetooth.CBUUID
+  public static let txPower: CoreBluetooth.CBUUID
+  public static let currentTime: CoreBluetooth.CBUUID
+  public static let referenceTimeUpdate: CoreBluetooth.CBUUID
+  public static let nextDSTChange: CoreBluetooth.CBUUID
+  public static let glucose: CoreBluetooth.CBUUID
+  public static let healthThermometer: CoreBluetooth.CBUUID
+  public static let deviceInformation: CoreBluetooth.CBUUID
+  public static let heartRate: CoreBluetooth.CBUUID
+  public static let phoneAlertStatus: CoreBluetooth.CBUUID
+  public static let batteryService: CoreBluetooth.CBUUID
+  public static let bloodPressure: CoreBluetooth.CBUUID
+  public static let alertNotification: CoreBluetooth.CBUUID
+  public static let humanInterfaceDevice: CoreBluetooth.CBUUID
+  public static let scanParameters: CoreBluetooth.CBUUID
+  public static let runningSpeedAndCadence: CoreBluetooth.CBUUID
+  public static let automationIO: CoreBluetooth.CBUUID
+  public static let cyclingSpeedAndCadence: CoreBluetooth.CBUUID
+  public static let cyclingPower: CoreBluetooth.CBUUID
+  public static let locationAndNavigation: CoreBluetooth.CBUUID
+  public static let environmentalSensing: CoreBluetooth.CBUUID
+  public static let bodyComposition: CoreBluetooth.CBUUID
+  public static let userData: CoreBluetooth.CBUUID
+  public static let weightScale: CoreBluetooth.CBUUID
+  public static let bondManagement: CoreBluetooth.CBUUID
+  public static let continuousGlucoseMonitoring: CoreBluetooth.CBUUID
+  public static let internetProtocolSupport: CoreBluetooth.CBUUID
+  public static let indoorPositioning: CoreBluetooth.CBUUID
+  public static let pulseOximeter: CoreBluetooth.CBUUID
+  public static let httpProxy: CoreBluetooth.CBUUID
+  public static let transportDiscovery: CoreBluetooth.CBUUID
+  public static let objectTransfer: CoreBluetooth.CBUUID
+  public static let fitnessMachine: CoreBluetooth.CBUUID
+  public static let meshProvisioning: CoreBluetooth.CBUUID
+  public static let meshProxy: CoreBluetooth.CBUUID
+  public static let reconnectionConfiguration: CoreBluetooth.CBUUID
+  public static let insulinDelivery: CoreBluetooth.CBUUID
+}
+public struct UserDefaultsKey<Type> : Swift.RawRepresentable {
+  public var rawValue: Swift.String
+  public init(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+}
+public protocol UserDefaultsKeyable {
+}
+extension SwiftExtensions.UserDefaultsKeyable {
+  public static func userDefaultsKey(for name: Swift.String) -> SwiftExtensions.UserDefaultsKey<Self>
+}
+extension Swift.Bool : SwiftExtensions.UserDefaultsKeyable {
+}
+extension Swift.Double : SwiftExtensions.UserDefaultsKeyable {
+}
+extension Swift.Float : SwiftExtensions.UserDefaultsKeyable {
+}
+extension Swift.Int : SwiftExtensions.UserDefaultsKeyable {
+}
+extension Swift.Array : SwiftExtensions.UserDefaultsKeyable {
+}
+extension Foundation.Data : SwiftExtensions.UserDefaultsKeyable {
+}
+extension Foundation.Date : SwiftExtensions.UserDefaultsKeyable {
+}
+extension Swift.Dictionary : SwiftExtensions.UserDefaultsKeyable {
+}
+extension Swift.String : SwiftExtensions.UserDefaultsKeyable {
+}
+extension Foundation.URL : SwiftExtensions.UserDefaultsKeyable {
+}
+extension Foundation.UserDefaults {
+  public subscript(key: SwiftExtensions.UserDefaultsKey<Swift.Bool>) -> Swift.Bool {
+    get
+    set
+  }
+  public subscript(key: SwiftExtensions.UserDefaultsKey<Swift.Double>) -> Swift.Double {
+    get
+    set
+  }
+  public subscript(key: SwiftExtensions.UserDefaultsKey<Swift.Float>) -> Swift.Float {
+    get
+    set
+  }
+  public subscript(key: SwiftExtensions.UserDefaultsKey<Swift.Int>) -> Swift.Int {
+    get
+    set
+  }
+  public subscript(key: SwiftExtensions.UserDefaultsKey<Swift.Array<Any>>) -> Swift.Array<Any>? {
+    get
+    set
+  }
+  public subscript(key: SwiftExtensions.UserDefaultsKey<Swift.Array<Swift.String>>) -> Swift.Array<Swift.String>? {
+    get
+    set
+  }
+  public subscript(key: SwiftExtensions.UserDefaultsKey<Foundation.Data>) -> Foundation.Data? {
+    get
+    set
+  }
+  public subscript(key: SwiftExtensions.UserDefaultsKey<Foundation.Date>) -> Foundation.Date? {
+    get
+    set
+  }
+  public subscript(key: SwiftExtensions.UserDefaultsKey<Swift.Dictionary<Swift.String, Any>>) -> Swift.Dictionary<Swift.String, Any>? {
+    get
+    set
+  }
+  public subscript(key: SwiftExtensions.UserDefaultsKey<Swift.String>) -> Swift.String? {
+    get
+    set
+  }
+  public subscript(key: SwiftExtensions.UserDefaultsKey<Foundation.URL>) -> Foundation.URL? {
+    get
+    set
+  }
+  public subscript(key: SwiftExtensions.UserDefaultsKey<Any>) -> Any? {
+    get
+    set
+  }
+  public func setObject<T>(_ object: T, forKey key: Swift.String, usingEncoder encoder: Foundation.JSONEncoder = JSONEncoder()) throws where T : Swift.Encodable
+  public func object<T>(type: T.Type, forKey key: Swift.String, usingDecoder decoder: Foundation.JSONDecoder = JSONDecoder()) throws -> T? where T : Swift.Decodable
+  public func remove<Value>(forKey key: SwiftExtensions.UserDefaultsKey<Value>)
+}
+@nonobjc extension UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) public var x: CoreGraphics.CGFloat {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) public var y: CoreGraphics.CGFloat {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) public var width: CoreGraphics.CGFloat {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) public var height: CoreGraphics.CGFloat {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) public var cornerRadius: CoreGraphics.CGFloat {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) public var borderWidth: CoreGraphics.CGFloat {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) public var borderColor: UIKit.UIColor? {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) public static func setCornerRadius(_ cornerRadius: CoreGraphics.CGFloat, for views: Swift.Array<UIKit.UIView>)
+  @_Concurrency.MainActor(unsafe) public static func setCornerRadius(_ cornerRadius: CoreGraphics.CGFloat, for views: UIKit.UIView...)
+  @_Concurrency.MainActor(unsafe) public static func setShadow(withColor color: UIKit.UIColor = .lightGray, for views: Swift.Array<UIKit.UIView>)
+  @_Concurrency.MainActor(unsafe) public static func setShadow(withColor color: UIKit.UIColor = .lightGray, for views: UIKit.UIView...)
+  @_Concurrency.MainActor(unsafe) convenience public init(frame: CoreGraphics.CGRect, backgroundColor: UIKit.UIColor)
+  @_Concurrency.MainActor(unsafe) public func addSubviews(_ views: Swift.Array<UIKit.UIView>)
+  @_Concurrency.MainActor(unsafe) public func addSubviews(_ views: UIKit.UIView...)
+  @_Concurrency.MainActor(unsafe) public func removeAllSubviews()
+  @_Concurrency.MainActor(unsafe) public func setGestureRecognizers(_ gestureRecognizers: UIKit.UIGestureRecognizer...)
+  @_Concurrency.MainActor(unsafe) public func setCornerRadius(_ cornerRadius: CoreGraphics.CGFloat, by corners: UIKit.UIRectCorner)
+}
+extension UIKit.UIView {
+  public typealias AnimationsBlock = () -> Swift.Void
+  public typealias AnimationCompletionBlock = (Swift.Bool) -> Swift.Void
+}
+extension UIKit.UIView.AnimationOptions {
+  public init(_ animationCurve: UIKit.UIView.AnimationCurve)
+}
+extension Swift.Double {
+  public static let bestForNavigation: CoreLocation.CLLocationAccuracy
+  public static let best: CoreLocation.CLLocationAccuracy
+  public static let nearestTenMeters: CoreLocation.CLLocationAccuracy
+  public static let hundredMeters: CoreLocation.CLLocationAccuracy
+  public static let kilometer: CoreLocation.CLLocationAccuracy
+  public static let threeKilometers: CoreLocation.CLLocationAccuracy
+}
+extension Foundation.Timer {
+  @discardableResult
+  public static func after(_ interval: Foundation.TimeInterval, handler: @escaping () -> Swift.Void) -> Foundation.Timer
+  @discardableResult
+  public static func every(_ interval: Foundation.TimeInterval, handler: @escaping (Foundation.Timer) -> Swift.Void) -> Foundation.Timer
+  public static func new(after interval: Foundation.TimeInterval, handler: @escaping () -> Swift.Void) -> Foundation.Timer
+  public static func new(after interval: Foundation.TimeInterval, target: Any, selector: ObjectiveC.Selector, userInfo: Any? = nil) -> Foundation.Timer
+  public static func new(every interval: Foundation.TimeInterval, handler: @escaping (Foundation.Timer) -> Swift.Void) -> Foundation.Timer
+  public static func new(every interval: Foundation.TimeInterval, target: Any, selector: ObjectiveC.Selector, userInfo: Any? = nil) -> Foundation.Timer
+  public func start(runloop: Foundation.RunLoop = .current, modes: Foundation.RunLoop.Mode...)
+}
+extension QuartzCore.CALayer {
+  public func add<Key>(_ anim: QuartzCore.CAAnimation, forKey key: Key) where Key : Swift.RawRepresentable, Key.RawValue == Swift.String
+}
+extension Foundation.URL {
+  public var request: Foundation.URLRequest {
+    get
+  }
+  public var rootURL: Foundation.URL? {
+    get
+  }
+  public var isRootURL: Swift.Bool {
+    get
+  }
+  public func appendingQueryParameters(_ parameters: Swift.Dictionary<Swift.String, Swift.String>) -> Foundation.URL
+  public mutating func appendQueryParameters(_ parameters: Swift.Dictionary<Swift.String, Swift.String>)
+  public func queryValue(for key: Swift.String) -> Swift.String?
+}
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+extension SwiftUI.Binding {
+  public static func ?? <Wrapped>(lhs: SwiftUI.Binding<Value>, rhs: Wrapped) -> SwiftUI.Binding<Wrapped> where Value == Swift.Optional<Wrapped>
+  public func unwrapped<Wrapped>(default: Wrapped) -> SwiftUI.Binding<Wrapped> where Value == Swift.Optional<Wrapped>
+}
+extension Foundation.URLSession {
+  public static var `default`: Foundation.URLSession {
+    get
+  }
+  public static func `default`(delegate: Foundation.URLSessionDelegate?, delegateQueue: Foundation.OperationQueue = .main) -> Foundation.URLSession
+  public static func `default`(delegateQueue: Foundation.OperationQueue) -> Foundation.URLSession
+  public func dataTask(with url: Foundation.URL, completionHandler: @escaping Foundation.URLSession.DataTaskResultHandler) -> Foundation.URLSessionDataTask
+  public func dataTask(with request: Foundation.URLRequest, completionHandler: @escaping Foundation.URLSession.DataTaskResultHandler) -> Foundation.URLSessionDataTask
+  public func downloadTask(with url: Foundation.URL, completionHandler: @escaping Foundation.URLSession.DownloadTaskResultHandler) -> Foundation.URLSessionDownloadTask
+  public func downloadTask(with request: Foundation.URLRequest, completionHandler: @escaping Foundation.URLSession.DownloadTaskResultHandler) -> Foundation.URLSessionDownloadTask
+}
+extension Foundation.URLSession {
+  public func dataTask<DecodeResult>(with url: Foundation.URL, completionHandler: @escaping (Swift.Result<DecodeResult, Swift.Error>) -> Swift.Void) -> Foundation.URLSessionDataTask where DecodeResult : SwiftExtensions.URLSessionDecodeConvertible
+  public func dataTask<DecodeResult>(with request: Foundation.URLRequest, completionHandler: @escaping (Swift.Result<DecodeResult, Swift.Error>) -> Swift.Void) -> Foundation.URLSessionDataTask where DecodeResult : SwiftExtensions.URLSessionDecodeConvertible
+}
+extension Foundation.URLSession {
+  public typealias DataTaskHandler = (Foundation.Data?, Foundation.URLResponse?, Swift.Error?) -> Swift.Void
+  public typealias DownloadTaskHandler = (Foundation.URL?, Foundation.URLResponse?, Swift.Error?) -> Swift.Void
+  public typealias DataTaskResultHandler = (Swift.Result<Foundation.Data, Swift.Error>) -> Swift.Void
+  public typealias DownloadTaskResultHandler = (Swift.Result<Foundation.URL, Swift.Error>) -> Swift.Void
+}
+public protocol URLSessionDecodeConvertible {
+  static func decode(from data: Foundation.Data) throws -> Self
+}
+extension UIKit.UICollectionView.ElementKind : Swift.Equatable {}
+extension UIKit.UICollectionView.ElementKind : Swift.Hashable {}
+extension Foundation.Bundle.Key : Swift.Equatable {}
+extension Foundation.Bundle.Key : Swift.Hashable {}
+extension Foundation.Bundle.Key : Swift.RawRepresentable {}
+extension SwiftExtensions.HTTPError.StatusCode : Swift.Equatable {}
+extension SwiftExtensions.HTTPError.StatusCode : Swift.Hashable {}
+extension SwiftExtensions.HTTPError.StatusCode : Swift.RawRepresentable {}
+extension Foundation.DateFormatter.Error : Swift.Equatable {}
+extension Foundation.DateFormatter.Error : Swift.Hashable {}
+extension UIKit.UIImageView.DownloadImageError : Swift.Equatable {}
+extension UIKit.UIImageView.DownloadImageError : Swift.Hashable {}
+extension SwiftExtensions.HTTPMethod : Swift.Hashable {}
+extension SwiftExtensions.HTTPMethod : Swift.RawRepresentable {}
+extension Foundation.Calendar.Weekday : Swift.Equatable {}
+extension Foundation.Calendar.Weekday : Swift.Hashable {}
+extension Foundation.Calendar.Weekday : Swift.RawRepresentable {}
+extension UIKit.UIColor.InputError : Swift.Equatable {}
+extension UIKit.UIColor.InputError : Swift.Hashable {}

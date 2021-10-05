@@ -208,3 +208,4 @@ xcuserdata
 #
 #*.xccheckout
 .xcbkptlist
+*.xcuserstate

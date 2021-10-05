@@ -23,6 +23,7 @@
 		F26E04F4270AAB2C007066B2 /* SwiftExtensions.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F26E04F3270AAB2C007066B2 /* SwiftExtensions.xcframework */; };
 		F26E04F5270AAB2C007066B2 /* SwiftExtensions.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F26E04F3270AAB2C007066B2 /* SwiftExtensions.xcframework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F26E04F8270AB08C007066B2 /* CBManagerStateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26E04F7270AB08C007066B2 /* CBManagerStateExtension.swift */; };
+		F2FD1C93270AF1B900F0ED34 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FD1C92270AF1B900F0ED34 /* SceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -61,6 +62,7 @@
 		52A702E32124189800017F9E /* DTUUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTUUID.swift; sourceTree = "<group>"; };
 		F26E04F3270AAB2C007066B2 /* SwiftExtensions.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SwiftExtensions.xcframework; sourceTree = "<group>"; };
 		F26E04F7270AB08C007066B2 /* CBManagerStateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBManagerStateExtension.swift; sourceTree = "<group>"; };
+		F2FD1C92270AF1B900F0ED34 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				52A702E22124173E00017F9E /* Modal */,
 				52A702B72123D4D100017F9E /* Main.storyboard */,
 				52A702B32123D4D100017F9E /* AppDelegate.swift */,
+				F2FD1C92270AF1B900F0ED34 /* SceneDelegate.swift */,
 				52A702B52123D4D100017F9E /* ViewController.swift */,
 				52A702CF2123D73200017F9E /* Central */,
 				52A702CE2123D72C00017F9E /* Peripheral */,
@@ -239,6 +242,7 @@
 				525C73BC21250EC70093A32A /* DTAPP.swift in Sources */,
 				5298045721A7DC1B00BA9F1F /* DTPeripheralsController.swift in Sources */,
 				52A702E42124189800017F9E /* DTUUID.swift in Sources */,
+				F2FD1C93270AF1B900F0ED34 /* SceneDelegate.swift in Sources */,
 				52A702B62123D4D100017F9E /* ViewController.swift in Sources */,
 				52A702B42123D4D100017F9E /* AppDelegate.swift in Sources */,
 				52A702DF2123DC5D00017F9E /* DTCentralController.swift in Sources */,
